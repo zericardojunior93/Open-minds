@@ -1,1 +1,787 @@
+/* Configurações Globais */
+:root {
+    --fundo: #000000;
+    --fundo-card: #0d1117;
+    --texto: #ffffff;
+    --texto-secundario: #a3a3a3;
+    --ciano: #00f2fe; /* Cor de destaque neon */
+    --borda-ciano: rgba(0, 242, 254, 0.3);
+    --fonte-principal: 'Inter', system-ui, -apple-system, sans-serif;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+/* Utilitários */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.btn-ciano {
+    background-color: var(--ciano);
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-ciano:hover {
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+
+.btn-outline {
+    border: 1px solid var(--ciano);
+    color: var(--ciano);
+    background: transparent;
+    padding: 10px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: rgba(0, 242, 254, 0.1);
+}
+
+.texto-ciano {
+    color: var(--ciano);
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* --- SEÇÕES ESPECÍFICAS --- */
+
+/* 1. Cabeçalho (Baseado na image_0.png) */
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo-container img {
+    height: 40px; /* Ajuste conforme o seu logo */
+}
+
+header .logo-container span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: none; /* Escondido como no design */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--ciano);
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--texto);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    border-color: var(--borda-ciano);
+}
+
+/* 2. Hero (Baseado na image_0.png) */
+.hero {
+    text-align: center;
+    padding: 100px 0;
+    background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--texto-secundario);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+/* 3. Seleção de Tecnologia (Baseado na image_1.png) */
+.tech-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.tech-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tech-card:hover, .tech-card.active {
+    border-color: var(--ciano);
+    background-color: rgba(0, 242, 254, 0.05);
+}
+
+.tech-card h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--texto-secundario);
+    margin-bottom: 5px;
+}
+
+.tech-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.tech-desc h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.tech-desc p {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* 4. Benefícios (Baseado na image_2.png) */
+.benefits-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.benefit-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.benefit-card:hover {
+    border-color: var(--borda-ciano);
+}
+
+.benefit-card img {
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.benefit-card p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* 5. Destaque IA Nexi (Baseado na image_3.png) */
+.ia-nexi {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.ia-nexi h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.ia-nexi p {
+    color: var(--texto-secundario);
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.ia-nexi .img-container {
+    text-align: center;
+    background-color: var(--fundo-card);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ia-nexi .img-container img {
+    max-height: 250px;
+}
+
+/* 6. Principais Benefícios - Cards Verticais (Baseado na image_4.png) */
+.main-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.main-benefit-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.main-benefit-card:hover {
+    border-color: var(--borda-ciano);
+}
+
+.main-benefit-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.main-benefit-card p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* 7. Trilhas Formativas (Baseado na image_5.png) */
+.trilhas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.trilha-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.trilha-card:hover {
+    border-color: var(--ciano);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.trilha-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.trilha-card p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* 8. Planos de Preços (Baseado na image_6.png) */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.pricing-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+.pricing-card.featured {
+    border-color: var(--ciano);
+}
+
+.pricing-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.discount {
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--ciano);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--texto-secundario);
+}
+
+.duration {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+    margin-bottom: 25px;
+}
+
+.pricing-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.pricing-card ul li {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* 9. Construa seu Futuro (Baseado na image_7.png) */
+.build-future {
+    text-align: center;
+    padding: 100px 0;
+    background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.build-future h2 {
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+.build-future p {
+    color: var(--texto-secundario);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.hashtags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    color: var(--ciano);
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+/* 10. Plataforma na Prática (Baseado na image_8.png) */
+.practice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.practice h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.practice p {
+    color: var(--texto-secundario);
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.practice .practice-img {
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+.practice ul {
+    list-style: none;
+}
+
+.practice ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.practice ul li img {
+    height: 15px;
+}
+
+/* 11. Plano Mais Completo (Baseado na image_9.png) */
+.full-plan {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 80px 0;
+}
+
+.full-plan h2 {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.full-plan p {
+    color: var(--texto-secundario);
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.full-plan ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.full-plan ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.full-plan .benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.full-plan .benefit-card-full {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+}
+
+.full-plan .benefit-card-full h3 {
+    color: var(--ciano);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.full-plan .benefit-card-full p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* 12. Novidades (Baseado na image_11.png) */
+.news {
+    padding: 80px 0;
+}
+
+.news h2 {
+    margin-bottom: 40px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.news-card-large {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+}
+
+.news-card-large img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.news-card-large h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.news-card-large p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+}
+
+.news-small-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.news-card-small {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+}
+
+.news-card-small h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.news-card-small p {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+}
+
+/* 13. Dúvidas Frequentes (Baseado na image_12.png) */
+.faq {
+    padding: 80px 0;
+}
+
+.faq h2 {
+    margin-bottom: 15px;
+}
+
+.faq p {
+    color: var(--texto-secundario);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 14. Newsletter (Baseado na image_13.png) */
+.newsletter {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.newsletter h2 {
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+.newsletter p {
+    color: var(--texto-secundario);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.newsletter-form {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.newsletter-form .input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.newsletter-form label {
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+    margin-bottom: 5px;
+}
+
+.newsletter-form input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--texto);
+    font-size: 0.9rem;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--borda-ciano);
+}
+
+.newsletter-form .btn-group {
+    grid-column: span 2;
+    margin-top: 20px;
+}
+
+.newsletter-form .btn-ciano {
+    width: 100%;
+}
+
+/* 15. Rodapé (Baseado na image_14.png) */
+footer {
+    padding: 60px 5%;
+    background-color: var(--fundo-card);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 40px;
+}
+
+.footer-top .logo-container img {
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+.footer-top .logo-container p {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.footer-links div h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-links div ul {
+    list-style: none;
+}
+
+.footer-links div ul li a {
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.footer-links div ul li a:hover {
+    color: var(--texto);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+/* Responsividade Básica */
+@media (max-width: 900px) {
+    .tech-selection, .benefits-cards, .pricing-grid, .full-plan, .footer-links, .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .ia-nexi, .practice, .newsletter-form {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .ia-nexi h2, .practice h2 {
+        text-align: center;
+    }
+    
+    .ia-nexi p, .practice p {
+        margin: 0 auto 30px auto;
+    }
+    
+    .ia-nexi .img-container, .newsletter-form {
+        margin: 0 auto;
+    }
+    
+    header nav {
+        display: none; /* Esconde menu para menu mobile futuramente */
+    }
+    
+    .login-btn {
+        margin: 0 auto;
+    }
+}
