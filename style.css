@@ -23,11 +23,18 @@ body {
 }
 
 /* Utilitários */
+/* ===== CONTAINER PRINCIPAL ===== */
+/* Conceito: máxima largura de 1200px centralizada com padding lateral */
+/* Para ajustar espaçamento lateral: modifique o padding (20px) */
+/* Para ajustar largura máxima em telas grandes: modifique max-width */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5%;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 0 20px; /* Espaçamento lateral (20px em cada lado) */
+    width: 100%; /* Ocupa 100% da largura disponível até max-width */
+    box-sizing: border-box;
 }
+
 
 .btn-ciano {
     background-color: var(--ciano);
@@ -68,11 +75,25 @@ body {
     color: var(--ciano);
 }
 
+.discounttexto-ciano {
+    display: inline-block;
+    background-color: #0a5a68;
+    color: var(--ciano);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+}
+
 h2 {
     font-size: 2.5rem;
     font-weight: 800;
-    text-align: center;
-    margin-bottom: 40px;
+    text-align: left;
+    margin-top: 120px; /* Espaço maior antes do título */
+    margin-bottom: 25px; /* Espaço menor depois do título */
 }
 
 /* --- SEÇÕES ESPECÍFICAS --- */
@@ -142,31 +163,37 @@ nav ul li a:hover {
 }
 
 /* 2. Hero (Baseado na image_0.png) */
+/* ===== MAX-WIDTH PADRONIZADO ===== */
 .hero {
-    text-align: center;
-    padding: 100px 0;
+    text-align: left;
+    padding-top: 100px;
+    padding-bottom: 120px;
     background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    /* max-width e margin controlados pelo .container */
 }
 
 .hero h1 {
     font-size: 4rem;
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .hero p {
     font-size: 1.1rem;
     color: var(--texto-secundario);
     max-width: 600px;
-    margin: 0 auto 40px auto;
+    margin: 0 0 40px 0;
 }
 
-/* 3. Seleção de Tecnologia (Baseado na image_1.png) */
+/* ===== GRID DE CARDS COM FLEXBOX ===== */
+/* Gap de 24px entre cards em layouts responsivos */
+/* Para aumentar/diminuir espaço entre cards: ajuste o 'gap' */
 .tech-selection {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 24px; /* Distância horizontal e vertical entre cards */
+    padding: 100px 0 120px 0;
 }
 
 .tech-grid {
@@ -207,7 +234,6 @@ nav ul li a:hover {
 
 .tech-desc h2 {
     text-align: left;
-    margin-bottom: 15px;
 }
 
 .tech-desc p {
@@ -216,10 +242,13 @@ nav ul li a:hover {
 }
 
 /* 4. Benefícios (Baseado na image_2.png) */
+/* ===== GRID DE BENEFÍCIOS CARDS ===== */
+/* 3 colunas com gap de 24px para espaçamento visual */
+/* Para ajustar espaço entre cards: modifique o valor do 'gap' (em pixels) */
 .benefits-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px; /* Distância entre cards */
 }
 
 .benefit-card {
@@ -236,8 +265,10 @@ nav ul li a:hover {
 }
 
 .benefit-card img {
-    height: 35px;
+    height: 50px;
     margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid #00F2FE;
 }
 
 .benefit-card h3 {
@@ -262,7 +293,6 @@ nav ul li a:hover {
 
 .ia-nexi h2 {
     text-align: left;
-    margin-bottom: 15px;
 }
 
 .ia-nexi p {
@@ -281,20 +311,28 @@ nav ul li a:hover {
 
 .ia-nexi .img-container img {
     max-height: 250px;
+    border: 1px solid #00F2FE;
 }
 
 /* 6. Principais Benefícios - Cards Verticais (Baseado na image_4.png) */
+/* ===== GRID DE BENEFÍCIOS PRINCIPAIS ===== */
+/* 3 colunas com gap de 24px para espaçamento visual */
+/* Para ajustar distância: modifique o valor do 'gap' */
+.main-benefits {
+    padding: 100px 0;
+}
+
 .main-benefits-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 40px; /* Espaço entre cards nessa seção - aumentado para mais respiro */
 }
 
 .main-benefit-card {
     background-color: var(--fundo-card);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 25px;
+    padding: 35px; /* Aumentado para mais respiro interno */
     text-align: left;
     transition: 0.3s;
 }
@@ -315,17 +353,31 @@ nav ul li a:hover {
 }
 
 /* 7. Trilhas Formativas (Baseado na image_5.png) */
+/* ===== GRID DE TRILHAS FORMATIVAS ===== */
+/* 3 colunas com gap de 24px para espaçamento consistente */
+/* Para ajustar distância horizontal: modifique o 'gap' */
+.trilhas-formativas {
+    padding: 100px 0;
+}
+
+.section-description {
+    color: var(--texto-secundario);
+    max-width: 600px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
 .trilhas-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 40px; /* Espaço entre cards de trilhas - aumentado para mais respiro */
 }
 
 .trilha-card {
     background-color: var(--fundo-card);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 25px;
+    padding: 35px; /* Aumentado para mais respiro interno */
     text-align: left;
     cursor: pointer;
     transition: 0.3s;
@@ -348,10 +400,18 @@ nav ul li a:hover {
 }
 
 /* 8. Planos de Preços (Baseado na image_6.png) */
+/* ===== GRID DE CARDS DE PREÇO ===== */
+/* 3 colunas com gap de 24px para espaçamento entre planos */
+/* Para ajustar distância entre cards: modifique o 'gap' */
+/* Para mudar número de colunas em diferentes telas: ajuste 'grid-template-columns' */
+.pricing {
+    padding: 100px 0;
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 40px; /* Espaço horizontal entre cards de preço - aumentado para mais respiro */
     align-items: start;
 }
 
@@ -359,8 +419,12 @@ nav ul li a:hover {
     background-color: var(--fundo-card);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    padding: 30px;
+    padding: 40px; /* Aumentado para mais respiro interno */
     text-align: center;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .pricing-card.featured {
@@ -407,6 +471,8 @@ nav ul li a:hover {
     list-style: none;
     text-align: left;
     margin-bottom: 30px;
+    flex: 1 1 auto;
+    margin-top: 32px;
 }
 
 .pricing-card ul li {
@@ -417,25 +483,24 @@ nav ul li a:hover {
 
 /* 9. Construa seu Futuro (Baseado na image_7.png) */
 .build-future {
-    text-align: center;
+    text-align: left;
     padding: 100px 0;
     background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
 }
 
 .build-future h2 {
     max-width: 600px;
-    margin: 0 auto 15px auto;
 }
 
 .build-future p {
     color: var(--texto-secundario);
     max-width: 600px;
-    margin: 0 auto 30px auto;
+    margin: 0 0 30px 0;
 }
 
 .hashtags {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 15px;
     color: var(--ciano);
@@ -454,7 +519,6 @@ nav ul li a:hover {
 
 .practice h2 {
     text-align: left;
-    margin-bottom: 15px;
 }
 
 .practice p {
@@ -466,6 +530,7 @@ nav ul li a:hover {
 .practice .practice-img {
     border-radius: 8px;
     max-width: 100%;
+    border: 1px solid #00F2FE;
 }
 
 .practice ul {
@@ -493,7 +558,6 @@ nav ul li a:hover {
 
 .full-plan h2 {
     text-align: left;
-    margin-bottom: 15px;
 }
 
 .full-plan p {
@@ -514,10 +578,13 @@ nav ul li a:hover {
     gap: 10px;
 }
 
+/* ===== FLEX CONTAINER - BENEFICIÁRIOS FULL PLAN ===== */
+/* Flex vertical com gap de 24px entre beneficiários */
+/* Para ajustar espaço vertical: modifique o 'gap' */
 .full-plan .benefits {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px; /* Espaçamento vertical entre cards */
 }
 
 .full-plan .benefit-card-full {
@@ -546,13 +613,18 @@ nav ul li a:hover {
 }
 
 .news h2 {
+    margin-top: 160px;
     margin-bottom: 40px;
 }
 
+/* ===== GRID DE NOTÍCIAS ===== */
+/* 2 colunas com gap de 24px para espaçamento entre cards */
+/* Para ajustar espaço: modifique o 'gap' */
+/* Para mudar para 3 colunas: altere 'repeat(2, 1fr)' para 'repeat(3, 1fr)' */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 24px; /* Distância entre cards de notícias */
 }
 
 .news-card-large {
@@ -567,6 +639,7 @@ nav ul li a:hover {
     max-width: 100%;
     border-radius: 8px;
     margin-bottom: 20px;
+    border: 1px solid #00F2FE;
 }
 
 .news-card-large h3 {
@@ -610,31 +683,30 @@ nav ul li a:hover {
     padding: 80px 0;
 }
 
-.faq h2 {
-    margin-bottom: 15px;
-}
-
 .faq p {
     color: var(--texto-secundario);
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.small-info {
+    font-size: 0.8rem;
 }
 
 /* 14. Newsletter (Baseado na image_13.png) */
 .newsletter {
     padding: 80px 0;
-    text-align: center;
+    text-align: left;
 }
 
 .newsletter h2 {
     max-width: 600px;
-    margin: 0 auto 15px auto;
 }
 
 .newsletter p {
     color: var(--texto-secundario);
     max-width: 600px;
-    margin: 0 auto 40px auto;
+    margin: 0 0 40px 0;
 }
 
 .newsletter-form {
@@ -643,7 +715,7 @@ nav ul li a:hover {
     border-radius: 8px;
     padding: 40px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -707,10 +779,29 @@ footer {
     font-size: 0.8rem;
 }
 
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+}
+
+/* ===== GRID DO RODAPÉ ===== */
+/* 4 colunas com gap de 40px para melhor distribuição */
+/* Gap maior pois cada coluna tem menu de links */
+/* Para ajustar espaçamento: modifique o 'gap' */
 .footer-links {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    gap: 40px; /* Espaço maior para rodapé */
 }
 
 .footer-links div h4 {
