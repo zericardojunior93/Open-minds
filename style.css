@@ -86,14 +86,14 @@ body {
     letter-spacing: 2px;
     margin-bottom: 18px;
 }
-}
+
 
 h2 {
     font-size: 2.5rem;
     font-weight: 800;
-    text-align: left;
+    text-align: center;
     margin-top: 120px; /* Espaço maior antes do título */
-    margin-bottom: 25px; /* Espaço menor depois do título */
+    margin-bottom: 50px; /* Espaço aumentado depois do título para melhor respiro */
 }
 
 /* --- SEÇÕES ESPECÍFICAS --- */
@@ -101,13 +101,17 @@ h2 {
 /* 1. Cabeçalho (Baseado na image_0.png) */
 header {
     background-color: rgba(0, 0, 0, 0.9);
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+header .header-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .logo-container {
@@ -165,7 +169,10 @@ nav ul li a:hover {
 /* 2. Hero (Baseado na image_0.png) */
 /* ===== MAX-WIDTH PADRONIZADO ===== */
 .hero {
-    text-align: left;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-top: 100px;
     padding-bottom: 120px;
     background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
@@ -177,13 +184,15 @@ nav ul li a:hover {
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .hero p {
     font-size: 1.1rem;
     color: var(--texto-secundario);
     max-width: 600px;
-    margin: 0 0 40px 0;
+    margin: 0 auto 40px auto;
+    text-align: center;
 }
 
 /* ===== GRID DE CARDS COM FLEXBOX ===== */
@@ -227,13 +236,14 @@ nav ul li a:hover {
 .tech-desc {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 400px;
     margin: 0 auto;
 }
 
 .tech-desc h2 {
     text-align: left;
+    margin-top: 0;
 }
 
 .tech-desc p {
@@ -287,12 +297,13 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    align-items: center;
+    align-items: stretch;
     padding: 80px 0;
 }
 
 .ia-nexi h2 {
     text-align: left;
+    margin-top: 0;
 }
 
 .ia-nexi p {
@@ -303,15 +314,17 @@ nav ul li a:hover {
 
 .ia-nexi .img-container {
     text-align: center;
-    background-color: var(--fundo-card);
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
 }
 
 .ia-nexi .img-container img {
-    max-height: 250px;
-    border: 1px solid #00F2FE;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0.85;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
 }
 
 /* 6. Principais Benefícios - Cards Verticais (Baseado na image_4.png) */
@@ -320,6 +333,10 @@ nav ul li a:hover {
 /* Para ajustar distância: modifique o valor do 'gap' */
 .main-benefits {
     padding: 100px 0;
+}
+
+.main-benefits h2 {
+    text-align: left;
 }
 
 .main-benefits-grid {
@@ -356,15 +373,32 @@ nav ul li a:hover {
 /* ===== GRID DE TRILHAS FORMATIVAS ===== */
 /* 3 colunas com gap de 24px para espaçamento consistente */
 /* Para ajustar distância horizontal: modifique o 'gap' */
+/* ===== SEPARADOR NEON ===== */
+.trilha-neon-separador {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    margin: 40px 0; /* Controle suave do distanciamento vertical */
+    opacity: 0.85; /* Mistura levemente a luminosidade com o fundo escuro */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
 .trilhas-formativas {
-    padding: 100px 0;
+    padding-bottom: 100px;
+}
+
+.trilhas-formativas h2 {
+    text-align: center;
+    margin-top: 0;
 }
 
 .section-description {
     color: var(--texto-secundario);
     max-width: 600px;
-    margin-bottom: 40px;
-    text-align: left;
+    margin: 0 auto 40px auto;
+    text-align: center;
 }
 
 .trilhas-grid {
@@ -412,7 +446,7 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px; /* Espaço horizontal entre cards de preço - aumentado para mais respiro */
-    align-items: start;
+    align-items: stretch;
 }
 
 .pricing-card {
@@ -486,10 +520,29 @@ nav ul li a:hover {
     text-align: left;
     padding: 100px 0;
     background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: stretch;
+}
+
+.build-future-img {
+    height: 100%;
+}
+
+.build-future-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0.85;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
 }
 
 .build-future h2 {
     max-width: 600px;
+    text-align: left;
 }
 
 .build-future p {
@@ -513,12 +566,13 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    align-items: center;
+    align-items: stretch;
     padding: 80px 0;
 }
 
 .practice h2 {
     text-align: left;
+    margin-top: 0;
 }
 
 .practice p {
@@ -529,7 +583,9 @@ nav ul li a:hover {
 
 .practice .practice-img {
     border-radius: 8px;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border: 1px solid #00F2FE;
 }
 
@@ -558,6 +614,7 @@ nav ul li a:hover {
 
 .full-plan h2 {
     text-align: left;
+    margin-top: 0;
 }
 
 .full-plan p {
@@ -630,52 +687,88 @@ nav ul li a:hover {
 .news-card-large {
     background-color: var(--fundo-card);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 25px;
+    border-radius: 12px;
+    padding: 0;
     text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .news-card-large img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #00F2FE;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
 }
 
 .news-card-large h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 30px 30px 10px 30px;
 }
 
 .news-card-large p {
     color: var(--texto-secundario);
     font-size: 0.9rem;
+    margin: 0 30px 40px 30px;
 }
 
 .news-small-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 24px;
 }
 
 .news-card-small {
     background-color: var(--fundo-card);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 30px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .news-card-small h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--ciano);
+    margin-bottom: 20px;
 }
 
 .news-card-small p {
     color: var(--texto-secundario);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* === Separador Tecnológico (Geométrico) === */
+.tech-separator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 80px auto;
+    opacity: 0.5; /* Suavidade da linha do painel de controle */
+}
+
+.ts-line {
+    height: 1px;
+    background-color: var(--ciano);
+}
+
+.ts-long {
+    flex: 3;
+    transform: translateY(-5px); /* Elevação da linha esquerda (mais longa) */
+}
+
+.ts-short {
+    flex: 1;
+    transform: translateY(4.5px); /* Abaixamento da linha direita, compensando a altura da SVG (aproximadamente metade de 10) */
 }
 
 /* 13. Dúvidas Frequentes (Baseado na image_12.png) */
@@ -683,30 +776,89 @@ nav ul li a:hover {
     padding: 80px 0;
 }
 
-.faq p {
-    color: var(--texto-secundario);
-    text-align: left;
-    margin-bottom: 10px;
+.faq-accordion {
+    max-width: 800px;
+    margin: 50px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.small-info {
-    font-size: 0.8rem;
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item[open] {
+    background-color: rgba(0, 242, 254, 0.05); /* Destaque sutil com a identidade ciano */
+}
+
+.faq-item summary {
+    padding: 25px 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--texto);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 60px;
+}
+
+/* Oculta seta padrão no chrome/safari */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Seta minimalista para baixo usando bordas */
+.faq-item summary::after {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: calc(50% - 6px);
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid var(--ciano);
+    border-right: 2px solid var(--ciano);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease, top 0.3s ease;
+}
+
+/* Rotação para ponta pra cima quando aberto */
+.faq-item[open] summary::after {
+    transform: rotate(225deg);
+    top: calc(50% - 2px);
+}
+
+.faq-content {
+    padding: 0 30px 25px 30px;
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* 14. Newsletter (Baseado na image_13.png) */
 .newsletter {
     padding: 80px 0;
-    text-align: left;
+    text-align: center;
 }
 
 .newsletter h2 {
     max-width: 600px;
+    margin: 0 auto;
 }
 
 .newsletter p {
     color: var(--texto-secundario);
     max-width: 600px;
-    margin: 0 0 40px 0;
+    margin: 0 auto 40px auto;
 }
 
 .newsletter-form {
@@ -715,7 +867,8 @@ nav ul li a:hover {
     border-radius: 8px;
     padding: 40px;
     max-width: 800px;
-    margin: 0;
+    width: 100%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -757,9 +910,13 @@ nav ul li a:hover {
 
 /* 15. Rodapé (Baseado na image_14.png) */
 footer {
-    padding: 60px 5%;
     background-color: var(--fundo-card);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer .footer-container {
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .footer-top {
