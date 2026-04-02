@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Post</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .full-post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10rem 20px 5rem;
+        }
+        .full-post-img {
+            width: 100%;
+            height: 450px;
+            background-color: #111;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #444;
+            text-transform: uppercase;
+        }
+        .full-post-header {
+            margin-bottom: 2rem;
+        }
+        .full-post-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--texto);
+        }
+        .full-post-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--texto-secundario);
+            text-align: justify;
+        }
+        .full-post-content p {
+            margin-bottom: 1.5rem;
+        }
+        .back-link {
+            color: var(--ciano);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="carreiras.html">Carreiras</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="minhas_assinaturas.html">Minhas assinaturas</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">
+                <span class="texto-ciano">Entrar</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="full-post-container">
+        <a href="blog.html" class="back-link">← Voltar para o Blog</a>
+        <div id="post-target">
+            <!-- Conteúdo será injetado aqui -->
+            <p style="color: #444;">Carregando postagem...</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <a href="index.html" class="logo-container">
+                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
+                    <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Open Minds Educação Tecnológica. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Importa os dados e a lógica -->
+    <script src="blog-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+            const target = document.getElementById('post-target');
+
+            if (!postId || !window.blogData) {
+                target.innerHTML = "<h1>Post não encontrado</h1><p>ID da postagem está ausente ou inválido.</p>";
+                return;
+            }
+
+            const post = window.blogData.find(p => p.id === postId);
+
+            if (post) {
+                document.title = `Open Minds | ${post.titulo}`;
+                target.innerHTML = `
+                    <div class="full-post-header">
+                        <div class="author-info" style="margin-bottom: 1.5rem;">
+                            <div class="author-avatar">${post.id === "1" || post.id === "2" || post.id === "3" || post.id === "4" || post.id === "5" ? "JR" : "OM"}</div>
+                            <div class="author-details">
+                                <p class="author-name">${post.autor}</p>
+                                <p class="post-meta">${post.data} · ${post.leitura}</p>
+                            </div>
+                        </div>
+                        <h1 class="full-post-title">${post.titulo}</h1>
+                    </div>
+                    ${post.temImagem ? `<div class="full-post-img"><span>Espaço para Imagem</span></div>` : ''}
+                    <div class="full-post-content">
+                        ${post.conteudo}
+                    </div>
+                `;
+            } else {
+                target.innerHTML = "<h1>Post não encontrado</h1><p>Sentimos muito, mas esta postagem não existe mais ou foi movida.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
