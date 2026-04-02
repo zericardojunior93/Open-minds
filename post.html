@@ -103,43 +103,106 @@
         </div>
     </footer>
 
-    <!-- Importa os dados e a lógica -->
+    <!-- Scripts de Lógica -->
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
     <script src="blog-data.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+
+    <!-- Carregando React e Babel Standalone via CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- CÓDIGO REACT POST (Escrito em JSX!) -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function SinglePost() {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
-            const target = document.getElementById('post-target');
+            const [post, setPost] = useState(null);
+            const [error, setError] = useState(null);
 
-            if (!postId || !window.blogData) {
-                target.innerHTML = "<h1>Post não encontrado</h1><p>ID da postagem está ausente ou inválido.</p>";
-                return;
+            useEffect(() => {
+                if (!postId || !window.blogData) {
+                    setError("ID da postagem está ausente ou inválido.");
+                    return;
+                }
+
+                const foundPost = window.blogData.find(p => p.id === postId);
+                if (foundPost) {
+                    setPost(foundPost);
+                    document.title = `Open Minds | ${foundPost.titulo}`;
+                } else {
+                    setError("Sentimos muito, mas esta postagem não existe mais ou foi movida.");
+                }
+            }, [postId]);
+
+            if (error) {
+                return (
+                    <div className="error-container">
+                        <h1>Post não encontrado</h1>
+                        <p>{error}</p>
+                    </div>
+                );
             }
 
-            const post = window.blogData.find(p => p.id === postId);
+            if (!post) {
+                return <p style={{ color: '#444' }}>Carregando postagem...</p>;
+            }
 
-            if (post) {
-                document.title = `Open Minds | ${post.titulo}`;
-                target.innerHTML = `
-                    <div class="full-post-header">
-                        <div class="author-info" style="margin-bottom: 1.5rem;">
-                            <div class="author-avatar">${post.id === "1" || post.id === "2" || post.id === "3" || post.id === "4" || post.id === "5" ? "JR" : "OM"}</div>
-                            <div class="author-details">
-                                <p class="author-name">${post.autor}</p>
-                                <p class="post-meta">${post.data} · ${post.leitura}</p>
+            return (
+                <div id="post-content">
+                    <div className="full-post-header">
+                        <div className="author-info" style={{ marginBottom: '1.5rem' }}>
+                            <div className="author-avatar">
+                                {post.id <= 5 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                            </div>
+                            <div className="author-details">
+                                <p className="author-name">{post.autor}</p>
+                                <p className="post-meta">{post.data} · {post.leitura}</p>
                             </div>
                         </div>
-                        <h1 class="full-post-title">${post.titulo}</h1>
+                        <h1 className="full-post-title">{post.titulo}</h1>
                     </div>
-                    ${post.temImagem ? `<div class="full-post-img"><span>Espaço para Imagem</span></div>` : ''}
-                    <div class="full-post-content">
-                        ${post.conteudo}
+                    
+                    {post.temImagem && (
+                        <div className="full-post-img" style={{ padding: 0, overflow: 'hidden' }}>
+                           {post.bannerImagem ? (
+                               <img src={post.bannerImagem} alt={post.titulo} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                           ) : (
+                               <span>Espaço para Imagem</span>
+                           )}
+                        </div>
+                    )}
+
+                    <div className="full-post-content" dangerouslySetInnerHTML={{ __html: post.conteudo }}>
                     </div>
-                `;
-            } else {
-                target.innerHTML = "<h1>Post não encontrado</h1><p>Sentimos muito, mas esta postagem não existe mais ou foi movida.</p>";
-            }
-        });
+
+                    <div className="post-share-footer" style={{ borderTop: '1px solid #333', marginTop: '4rem', paddingTop: '2rem', display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                        <span style={{ color: '#888', fontSize: '1.1rem', fontWeight: '600', marginRight: '15px' }}>Compartilhar:</span>
+                        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                            <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook" style={{ width: '35px', height: '35px', opacity: 0.8, transition: '0.3s' }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8} />
+                            </a>
+                            <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter" style={{ width: '35px', height: '35px', opacity: 0.8, transition: '0.3s' }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8} />
+                            </a>
+                            <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram" style={{ width: '35px', height: '35px', opacity: 0.8, transition: '0.3s' }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8} />
+                            </a>
+                            <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp" style={{ width: '35px', height: '35px', opacity: 0.8, transition: '0.3s' }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8} />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // Renderiza o App no Root
+        const root = ReactDOM.createRoot(document.getElementById('post-target'));
+        root.render(<SinglePost />);
     </script>
 </body>
 </html>

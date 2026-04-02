@@ -22,7 +22,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="carreiras.html">Carreiras</a></li>
                     <li><a href="cursos.html">Cursos</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
                     <li><a href="minhas_assinaturas.html">Minhas assinaturas</a></li>
                 </ul>
             </nav>
@@ -38,164 +38,9 @@
                 <a href="#">All Posts</a>
             </div>
 
-            <div class="blog-posts-container">
-                <!-- Post 1 -->
-                <a href="post.html?id=1" class="blog-post-card">
-                    <div class="blog-img-placeholder">
-                        <span>Espaço para Imagem</span>
-                    </div>
-                    <div class="blog-card-header">
-                        <div class="author-info">
-                            <div class="author-avatar">JR</div>
-                            <div class="author-details">
-                                <p class="author-name">José Ricardo</p>
-                                <p class="post-meta">há 6 dias · 3 min de leitura</p>
-                            </div>
-                        </div>
-                        <div class="post-options">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="blog-card-body">
-                        <h2>Transforme Seu Aprendizado com Gamificação e Supere as Barreiras das Plataformas Tradicionais!</h2>
-                        <p>A forma como aprendemos está mudando rapidamente. Plataformas tradicionais de ensino, muitas vezes baseadas em métodos passivos e repetitivos, não conseguem manter o interesse e a motivação dos alunos. A gamificação surge como uma solução poderosa para transformar o aprendizado, tornando-o mais envolvente e eficaz do que nunca. Ao aplicar dinâmicas de jogos em contextos educacionais, conseguimos criar trilhas personalizadas onde o progresso é celebrado a cada pequena conquista, mantendo o engajamento e a fluidez do conhecimento de maneira contínua e estimulante para todos os perfis de estudantes <span class="btn-read-more">Ler mais...</span></p>
-                    </div>
-                    <div class="blog-card-footer">
-                        <div class="post-stats">
-                            <span>4 visualizações</span>
-                            <span>1 comentário</span>
-                        </div>
-                        <div class="post-like-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                    </div>
-                </a>
+            <!-- Este é o root onde o React vai desenhar o seu blog -->
+            <div id="blog-root"></div>
 
-                <!-- Post 2 -->
-                <a href="post.html?id=2" class="blog-post-card">
-                    <div class="blog-img-placeholder">
-                        <span>Espaço para Imagem</span>
-                    </div>
-                    <div class="blog-card-header">
-                        <div class="author-info">
-                            <div class="author-avatar">JR</div>
-                            <div class="author-details">
-                                <p class="author-name">José Ricardo</p>
-                                <p class="post-meta">há 6 dias · 3 min de leitura</p>
-                            </div>
-                        </div>
-                        <div class="post-options">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="blog-card-body">
-                        <h2>Setup de Milhões: Estratégias Inovadoras para Montar Seu Escritório com Baixo Investimento</h2>
-                        <p>Montar um escritório que pareça e funcione como um setup de milhões não precisa custar uma fortuna. Muitas vezes, o que diferencia um ambiente de trabalho eficiente e agradável não é o valor gasto, mas as escolhas inteligentes feitas durante a montagem. Se você quer criar um espaço funcional, confortável e que inspire sua produtividade diária, este guia prático vai te mostrar por onde começar, focando no que realmente importa na ergonomia e na organização sem pesar no bolso para garantir que seu ambiente de trabalho seja impecável em todos os detalhes, desde a iluminação até a disposição estratégica dos seus equipamentos essenciais <span class="btn-read-more">Ler mais...</span></p>
-                    </div>
-                    <div class="blog-card-footer">
-                        <div class="post-stats">
-                            <span>1 visualização</span>
-                            <span>0 comentário</span>
-                        </div>
-                        <div class="post-like-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Post 3 -->
-                <a href="post.html?id=3" class="blog-post-card">
-                    <div class="blog-img-placeholder">
-                        <span>Espaço para Imagem</span>
-                    </div>
-                    <div class="blog-card-header">
-                        <div class="author-info">
-                            <div class="author-avatar">JR</div>
-                            <div class="author-details">
-                                <p class="author-name">José Ricardo</p>
-                                <p class="post-meta">há 6 dias · 3 min de leitura</p>
-                            </div>
-                        </div>
-                        <div class="post-options">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="blog-card-body">
-                        <h2>O Erro Comum que Pode Desencorajar Iniciantes na Programação e Como Evitá-lo</h2>
-                        <p>Começar a programar é um desafio empolgante, mas muitos iniciantes acabam desistindo logo no início. Um erro simples, porém muito comum, é o responsável por essa desistência precoce. Entender esse erro e saber como evitá-lo pode fazer toda a diferença para quem está começando a jornada na programação. Erro ao tentar aprender tudo de uma vez sem focar na base lógica pode gerar frustração e a sensação de que a programação não é para você, quando na verdade é apenas uma falha de estratégia que pode ser corrigida com passos pequenos e constantes <span class="btn-read-more">Ler mais...</span></p>
-                    </div>
-                    <div class="blog-card-footer">
-                        <div class="post-stats">
-                            <span>0 visualização</span>
-                            <span>0 comentário</span>
-                        </div>
-                        <div class="post-like-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Post 4 -->
-                <a href="post.html?id=4" class="blog-post-card">
-                    <div class="blog-card-header">
-                        <div class="author-info">
-                            <div class="author-avatar">JR</div>
-                            <div class="author-details">
-                                <p class="author-name">José Ricardo</p>
-                                <p class="post-meta">há 6 dias · 3 min de leitura</p>
-                            </div>
-                        </div>
-                        <div class="post-options">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="blog-card-body">
-                        <h2>Maximize sua Produtividade: 5 Ferramentas de IA para Desenvolvedores que Ganham 4 Horas no Dia</h2>
-                        <p>A vida de um desenvolvedor é repleta de desafios, prazos curtos e tarefas repetitivas que consomem tempo precioso. Imagine recuperar quatro horas do seu dia utilizando ferramentas de inteligência artificial (IA) que automatizam processos, auxiliam na escrita de código e simplificam a resolução de problemas. Este artigo explora as melhores ferramentas do mercado para otimizar seu workflow diário e permitir que você foque no que realmente importa, que é a criatividade e a arquitetura de soluções complexas e eficientes <span class="btn-read-more">Ler mais...</span></p>
-                    </div>
-                    <div class="blog-card-footer">
-                        <div class="post-stats">
-                            <span>1 visualização</span>
-                            <span>0 comentário</span>
-                        </div>
-                        <div class="post-like-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Post 5 -->
-                <a href="post.html?id=5" class="blog-post-card">
-                    <div class="blog-img-placeholder">
-                        <span>Espaço para Imagem</span>
-                    </div>
-                    <div class="blog-card-header">
-                        <div class="author-info">
-                            <div class="author-avatar">JR</div>
-                            <div class="author-details">
-                                <p class="author-name">José Ricardo</p>
-                                <p class="post-meta">há 6 dias · 3 min de leitura</p>
-                            </div>
-                        </div>
-                        <div class="post-options">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="blog-card-body">
-                        <h2>Guia do Iniciante para Conquistar seu Primeiro Projeto Freela como Desenvolvedor</h2>
-                        <p>Conseguir o primeiro projeto como freelancer pode parecer um desafio enorme para quem está começando na área de desenvolvimento. A dúvida sobre onde buscar oportunidades, como apresentar seu trabalho e como se organizar para entregar um serviço de qualidade é comum. Este guia foi feito para ajudar quem está começando do absoluto zero no mercado freelancer, trazendo dicas de posicionamento e como negociar seus primeiros valores de forma profissional e escalável <span class="btn-read-more">Ler mais...</span></p>
-                    </div>
-                    <div class="blog-card-footer">
-                        <div class="post-stats">
-                            <span>0 visualização</span>
-                            <span>0 comentário</span>
-                        </div>
-                        <div class="post-like-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                    </div>
-                </a>
-            </div>
         </div>
     </main>
 
@@ -274,6 +119,73 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scripts de Lógica -->
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
+    <script src="blog-data.js"></script>
+
+    <!-- Carregando React e Babel Standalone via CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- CÓDIGO REACT BLOG (Escrito em JSX!) -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Componente: Card de Postagem
+        function BlogCard({ post }) {
+            return (
+                <a href={`post.html?id=${post.id}`} className="blog-post-card">
+                    {post.temImagem && (
+                        <div className="blog-img-placeholder" style={{ padding: 0, overflow: 'hidden' }}>
+                            {post.bannerImagem ? (
+                                <img src={post.bannerImagem} alt={post.titulo} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                                <span>Espaço para Imagem</span>
+                            )}
+                        </div>
+                    )}
+                    <div className="blog-card-header">
+                        <div className="author-info">
+                            <div className="author-avatar">
+                                {post.id <= 5 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                            </div>
+                            <div class="author-details">
+                                <p class="author-name">{post.autor}</p>
+                                <p class="post-meta">{post.data} · {post.leitura}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="blog-card-body">
+                        <h2>{post.titulo}</h2>
+                        <p>{post.resumo} <span class="read-more">Ler mais...</span></p>
+                    </div>
+                </a>
+            );
+        }
+
+        // Componente: Lista de Posts
+        function BlogList() {
+            // No React real usaríamos useEffect para buscar os dados de uma API
+            const posts = window.blogData || [];
+
+            return (
+                <div className="blog-posts-container">
+                    {posts.length > 0 ? (
+                        posts.map(post => <BlogCard key={post.id} post={post} />)
+                    ) : (
+                        <p>Nenhum post encontrado.</p>
+                    )}
+                </div>
+            );
+        }
+
+        // Renderiza o App no Root
+        const root = ReactDOM.createRoot(document.getElementById('blog-root'));
+        root.render(<BlogList />);
+    </script>
 
     <script src="script.js"></script>
 </body>

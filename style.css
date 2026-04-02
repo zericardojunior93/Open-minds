@@ -147,11 +147,12 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: var(--texto);
+    color: var(--ciano);
 }
 
 nav ul li a.active {
     color: var(--texto);
+    font-weight: 700;
     position: relative;
 }
 
@@ -1839,5 +1840,410 @@ header + main .hero-carreiras {
     .footer-links {
         grid-template-columns: 1fr !important;
     }
+}
+
+/* 8. Blog Post Content (Página de Post Individual) */
+.full-post-content {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--texto);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.full-post-content h2, 
+.full-post-content h3 {
+    color: var(--texto);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.full-post-content h2 {
+    font-size: 2rem;
+    border-left: 5px solid var(--ciano);
+    padding-left: 20px;
+    margin-left: -25px; /* Compensa o padding para alinhar com o texto */
+}
+
+.full-post-content h3 {
+    font-size: 1.5rem;
+}
+
+.full-post-content p {
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.full-post-content ul, 
+.full-post-content ol {
+    margin-bottom: 2.5rem;
+    padding-left: 2rem; /* Garante que os tópicos comecem no lugar certo */
+}
+
+.full-post-content li {
+    margin-bottom: 1rem;
+    color: var(--texto);
+}
+
+.full-post-content strong {
+    color: var(--texto);
+}
+
+.full-post-img {
+    width: 100%;
+    margin: 4rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.full-post-img img {
+    width: 100%;
+    display: block;
+}
+
+/* Responsividade para o post */
+@media (max-width: 1000px) {
+    .full-post-content h2 {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .full-post-content {
+        padding: 0 10px;
+        font-size: 1.05rem;
+    }
+    
+    .full-post-content h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* 9. Minhas Assinaturas & Planos */
+.subscriptions-section {
+    padding: 2rem 0 100px;
+}
+
+.current-subscription-banner {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    border: 1px solid var(--borda-ciano);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.1);
+}
+
+.sub-info h3 {
+    font-size: 1.5rem;
+    color: var(--texto);
+    margin-bottom: 5px;
+}
+
+.sub-status {
+    display: inline-block;
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--ciano);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.sub-details {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.plan-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card.featured {
+    border: 2px solid var(--ciano);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+    z-index: 2;
+}
+
+.plan-badge {
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--ciano);
+    padding: 10px 0;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.plan-card h3 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: var(--texto);
+}
+
+.plan-price {
+    margin-bottom: 10px;
+}
+
+.plan-price .amount {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--texto);
+}
+
+.plan-price .period {
+    color: var(--texto-secundario);
+    font-size: 1rem;
+}
+
+.plan-duration {
+    color: var(--texto-secundario);
+    font-size: 0.85rem;
+    margin-bottom: 40px;
+}
+
+.plan-features {
+    text-align: left;
+    margin-bottom: 40px;
+    flex-grow: 1;
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-features li {
+    margin-bottom: 12px;
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-features li::before {
+    content: '✓';
+    color: var(--ciano);
+    font-weight: 900;
+}
+
+.plan-btn {
+    padding: 15px 0;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    margin-top: auto;
+}
+
+.plan-btn-outline {
+    background: transparent;
+    color: var(--ciano);
+    border: 2px solid var(--ciano);
+}
+
+.plan-btn-outline:hover {
+    background-color: var(--ciano);
+    color: #000;
+}
+
+.plan-btn-filled {
+    background-color: var(--ciano);
+    color: #000;
+    border: none;
+}
+
+.plan-btn-filled:hover {
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+@media (max-width: 1100px) {
+    .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .plan-card.featured {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+    .current-subscription-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+/* 10. Login & Cadastro */
+.auth-section {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+}
+
+.auth-card {
+    background-color: var(--fundo-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-header h1 {
+    font-size: 2.5rem;
+    color: var(--texto);
+    margin-bottom: 12px;
+    font-weight: 900;
+}
+
+.auth-header p {
+    color: var(--texto-secundario);
+    font-size: 1.1rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px 18px;
+    color: var(--texto);
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--ciano);
+    background-color: rgba(0, 242, 254, 0.02);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+.auth-btn {
+    background-color: var(--ciano);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-btn:hover {
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
+    transform: translateY(-3px);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 1rem;
+    color: var(--texto-secundario);
+}
+
+.auth-switch span {
+    color: var(--ciano);
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+.auth-error {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    text-align: center;
+    border: 1px solid rgba(255, 77, 77, 0.2);
+    margin-bottom: 25px;
+    animation: authShake 0.5s ease-in-out;
+}
+
+@keyframes authShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 

@@ -23,7 +23,7 @@
                     <li><a href="carreiras.html">Carreiras</a></li>
                     <li><a href="cursos.html">Cursos</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="minhas_assinaturas.html">Minhas assinaturas</a></li>
+                    <li><a href="minhas_assinaturas.html" class="active">Minhas assinaturas</a></li>
                 </ul>
             </nav>
             <button class="login-btn">
@@ -32,9 +32,9 @@
         </div>
     </header>
 
-    <main class="container" style="min-height: 50vh; padding-top: 10rem;">
-        <h1><span class="texto-ciano">Minhas Assinaturas</span></h1>
-        <p>Conteúdo da página de assinaturas será adicionado aqui.</p>
+    <main class="container subscriptions-section" id="subscriptions-root">
+        <!-- React montará o painel aqui -->
+        <p style="color: #444;">Carregando painel de assinaturas...</p>
     </main>
 
     <footer>
@@ -58,17 +58,17 @@
                 <div>
                     <h4>Institucional</h4>
                     <ul>
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Carreiras</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="carreiras.html">Carreiras</a></li>
                         <li><a href="#">Imprensa</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                         <li><a href="#">Parceiros</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Plataforma</h4>
                     <ul>
-                        <li><a href="#">Cursos Tech</a></li>
+                        <li><a href="cursos.html">Cursos Tech</a></li>
                         <li><a href="#">Mentorias</a></li>
                         <li><a href="#">Certificados</a></li>
                         <li><a href="#">Marketplace</a></li>
@@ -113,6 +113,103 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts de Dados e Lógica -->
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
+    <script src="subscription-data.js"></script>
+
+    <!-- Carregando React e Babel Standalone via CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- CÓDIGO REACT SUBSCRIPTIONS (Escrito em JSX!) -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Componente: Card de Plano Disponível
+        function PlanCard({ plan }) {
+            return (
+                <div className={`plan-card ${plan.destaque ? 'featured' : ''}`}>
+                    {plan.destaque && <div className="plan-badge">RECOMENDADO</div>}
+                    <div className="plan-badge" style={{ backgroundColor: 'transparent', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '20px' }}>
+                        {plan.desconto}
+                    </div>
+                    <h3>{plan.nome}</h3>
+                    <div className="plan-price">
+                        <span className="amount">{plan.preco}</span>
+                        <span className="period">{plan.periodo}</span>
+                    </div>
+                    <p className="plan-duration">{plan.duracao}</p>
+                    
+                    <div className="plan-features">
+                        <ul>
+                            {plan.beneficios.map((benefit, index) => (
+                                <li key={index}>{benefit}</li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <button 
+                        className={`plan-btn ${plan.destaque ? 'plan-btn-filled' : 'plan-btn-outline'}`}
+                        onClick={() => alert(`Iniciando matrícula no plano ${plan.nome}...`)}
+                    >
+                        {plan.botao}
+                    </button>
+                </div>
+            );
+        }
+
+        // Componente Principal
+        function SubscriptionApp() {
+            const [data, setData] = useState(null);
+
+            useEffect(() => {
+                if (window.subscriptionData) {
+                    setData(window.subscriptionData);
+                }
+            }, []);
+
+            if (!data) return <p style={{ color: '#444' }}>Carregando...</p>;
+
+            return (
+                <div>
+                    {/* Seção: Minha Assinatura Atual */}
+                    <section>
+                        <h2 style={{ marginBottom: '2rem', fontSize: '1.8rem' }}>Minha <span className="texto-ciano">Assinatura</span></h2>
+                        <div className="current-subscription-banner">
+                            <div className="sub-info">
+                                <h3>{data.minhaAssinatura.plano} <span className="sub-status">{data.minhaAssinatura.status}</span></h3>
+                                <p className="sub-details">Próxima renovação: <strong>{data.minhaAssinatura.proximaCobranca}</strong> | Valor: <strong>{data.minhaAssinatura.valor}</strong></p>
+                            </div>
+                            <button 
+                                className="plan-btn plan-btn-outline" 
+                                style={{ width: 'auto', padding: '12px 30px' }}
+                                onClick={() => alert('Deseja realmente cancelar? Entre em contato com nosso suporte.')}
+                            >
+                                Cancelar Plano
+                            </button>
+                        </div>
+                    </section>
+
+                    {/* Seção: Planos */}
+                    <section style={{ marginTop: '4rem' }}>
+                        <h2 style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '2rem' }}>Escolha o seu <span className="texto-ciano">Próximo Nível</span></h2>
+                        <p style={{ textAlign: 'center', color: '#888', marginBottom: '3rem' }}>Seja um assinante e tenha o poder da tecnologia em suas mãos.</p>
+                        
+                        <div className="plans-grid">
+                            {data.planosDisponiveis.map(plan => (
+                                <PlanCard key={plan.id} plan={plan} />
+                            ))}
+                        </div>
+                    </section>
+                </div>
+            );
+        }
+
+        // Renderiza o App
+        const root = ReactDOM.createRoot(document.getElementById('subscriptions-root'));
+        root.render(<SubscriptionApp />);
+    </script>
 </body>
 </html>

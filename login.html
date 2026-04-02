@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Entre na sua Conta</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajuste específico para a logo na página de login */
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-decoration: none;
+        }
+        .login-logo img {
+            width: 50px;
+        }
+        .login-logo span {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="auth-section">
+        <div id="auth-root"></div>
+    </main>
+
+    <!-- Scripts de Dados e Lógica -->
+    <script src="auth.js"></script>
+
+    <!-- Carregando React e Babel Standalone via CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- CÓDIGO REACT LOGIN (Escrito em JSX!) -->
+    <script type="text/babel">
+        const { useState } = React;
+
+        function AuthApp() {
+            const [isLogin, setIsLogin] = useState(true);
+            const [formData, setFormData] = useState({ nome: '', email: '', senha: '' });
+            const [error, setError] = useState('');
+
+            const handleInputChange = (e) => {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+                setError('');
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                
+                if (isLogin) {
+                    const res = window.auth.login(formData.email, formData.senha);
+                    if (res.success) {
+                        window.location.href = 'index.html';
+                    } else {
+                        setError(res.message);
+                    }
+                } else {
+                    if (!formData.nome || !formData.email || !formData.senha) {
+                        setError('Por favor, preencha todos os campos.');
+                        return;
+                    }
+                    const res = window.auth.cadastrar(formData.nome, formData.email, formData.senha);
+                    if (res.success) {
+                        window.location.href = 'index.html';
+                    } else {
+                        setError(res.message);
+                    }
+                }
+            };
+
+            return (
+                <div className="auth-card">
+                    <a href="index.html" className="login-logo">
+                        <img src="img/logo.png" alt="Open Minds Logo" />
+                        <span>Open Minds</span>
+                    </a>
+
+                    <div className="auth-header">
+                        <h1>{isLogin ? 'Bem-vindo de volta' : 'Crie sua conta'}</h1>
+                        <p>{isLogin ? 'Entre com seu e-mail para continuar' : 'Comece sua jornada tecnológica hoje'}</p>
+                    </div>
+
+                    {error && <div className="auth-error">{error}</div>}
+
+                    <form className="auth-form" onSubmit={handleSubmit}>
+                        {!isLogin && (
+                            <div className="form-group">
+                                <label>Nome Completo</label>
+                                <input 
+                                    type="text" 
+                                    name="nome" 
+                                    placeholder="Como quer ser chamado?" 
+                                    value={formData.nome}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                        )}
+                        <div className="form-group">
+                            <label>E-mail</label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                placeholder="seu@email.com" 
+                                required 
+                                value={formData.email}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Senha</label>
+                            <input 
+                                type="password" 
+                                name="senha" 
+                                placeholder="••••••••" 
+                                required 
+                                value={formData.senha}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <button type="submit" className="auth-btn">
+                            {isLogin ? 'Entrar' : 'Cadastrar agora'}
+                        </button>
+                    </form>
+
+                    <div className="auth-switch">
+                        {isLogin ? (
+                            <>Não tem uma conta? <span onClick={() => setIsLogin(false)}>Cadastre-se</span></>
+                        ) : (
+                            <>Já possui uma conta? <span onClick={() => setIsLogin(true)}>Faça Login</span></>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('auth-root'));
+        root.render(<AuthApp />);
+    </script>
+</body>
+</html>
