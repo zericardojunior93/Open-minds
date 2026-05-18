@@ -28,6 +28,53 @@
             font-weight: 900;
             letter-spacing: -1px;
         }
+
+        .google-auth-btn {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: #fff;
+            color: #14171a;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .google-auth-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(255, 255, 255, 0.12);
+        }
+
+        .google-auth-btn span:first-child {
+            color: #4285f4;
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .auth-divider {
+            margin: 0 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--texto-secundario);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -37,12 +84,16 @@
     </main>
 
     <!-- Scripts de Dados e Lógica -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
 
     <!-- Carregando React e Babel Standalone via CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="nexi-widget-v2.js"></script>
 
     <!-- CÓDIGO REACT LOGIN (Escrito em JSX!) -->
     <script type="text/babel">
@@ -52,19 +103,26 @@
             const [isLogin, setIsLogin] = useState(true);
             const [formData, setFormData] = useState({ nome: '', email: '', senha: '' });
             const [error, setError] = useState('');
+            const redirectTarget = new URLSearchParams(window.location.search).get('redirect');
+
+            const resolveRedirect = () => {
+                if (redirectTarget === 'checkout') return 'compra.html';
+                if (redirectTarget === 'home') return 'index.html';
+                return 'aluno.html';
+            };
 
             const handleInputChange = (e) => {
                 setFormData({ ...formData, [e.target.name]: e.target.value });
                 setError('');
             };
 
-            const handleSubmit = (e) => {
+            const handleSubmit = async (e) => {
                 e.preventDefault();
                 
                 if (isLogin) {
-                    const res = window.auth.login(formData.email, formData.senha);
+                    const res = await window.auth.login(formData.email, formData.senha);
                     if (res.success) {
-                        window.location.href = 'index.html';
+                        window.location.href = resolveRedirect();
                     } else {
                         setError(res.message);
                     }
@@ -73,14 +131,26 @@
                         setError('Por favor, preencha todos os campos.');
                         return;
                     }
-                    const res = window.auth.cadastrar(formData.nome, formData.email, formData.senha);
+                    const res = await window.auth.cadastrar(formData.nome, formData.email, formData.senha);
                     if (res.success) {
-                        window.location.href = 'index.html';
+                        window.location.href = resolveRedirect();
                     } else {
                         setError(res.message);
                     }
                 }
             };
+
+            const handleGoogleLogin = async () => {
+                setError('');
+                const res = await window.auth.loginComGoogle();
+
+                if (res.success) {
+                    window.location.href = resolveRedirect();
+                } else {
+                    setError(res.message);
+                }
+            };
+
 
             return (
                 <div className="auth-card">
@@ -95,6 +165,16 @@
                     </div>
 
                     {error && <div className="auth-error">{error}</div>}
+
+                    {isLogin && (
+                        <>
+                            <button type="button" className="google-auth-btn" onClick={handleGoogleLogin}>
+                                <span>G</span>
+                                <span>Entrar com Google</span>
+                            </button>
+                            <div className="auth-divider">ou</div>
+                        </>
+                    )}
 
                     <form className="auth-form" onSubmit={handleSubmit}>
                         {!isLogin && (
@@ -139,7 +219,7 @@
 
                     <div className="auth-switch">
                         {isLogin ? (
-                            <>Não tem uma conta? <span onClick={() => setIsLogin(false)}>Cadastre-se</span></>
+                            <>Não tem uma conta? <span onClick={() => window.location.href = 'planos.html'}>Cadastre-se</span></>
                         ) : (
                             <>Já possui uma conta? <span onClick={() => setIsLogin(true)}>Faça Login</span></>
                         )}
@@ -153,3 +233,5 @@
     </script>
 </body>
 </html>
+
+

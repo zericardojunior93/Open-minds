@@ -80,4 +80,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 5. Atalho para a area do aluno quando houver usuario autenticado
+    const loginBtn = document.querySelector('.login-btn');
+    if (window.auth && loginBtn && window.auth.estaLogado()) {
+        const hasStudentLink = loginBtn.querySelector('a[href="aluno.html"]');
+        const user = window.auth.getUsuario();
+
+        if (!hasStudentLink && user) {
+            loginBtn.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: flex-end;">
+                    <a href="aluno.html" class="texto-ciano" style="text-decoration: none; font-weight: 700;">Area do aluno</a>
+                    <span class="texto-ciano" style="font-weight: 700;">Ola, ${user.nome.split(' ')[0]}</span>
+                    <button id="logout-btn-enhanced" style="background: none; border: 1px solid #333; color: #888; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">Sair</button>
+                </div>
+            `;
+            loginBtn.style.padding = '0';
+            loginBtn.style.background = 'none';
+            loginBtn.style.border = 'none';
+
+            const enhancedLogout = document.getElementById('logout-btn-enhanced');
+            if (enhancedLogout) {
+                enhancedLogout.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.auth.logout();
+                });
+            }
+        }
+    }
+
 });

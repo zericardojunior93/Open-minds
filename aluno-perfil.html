@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Meu Perfil</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        header,
+        footer {
+            display: none;
+        }
+
+        .platform-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(0, 242, 254, 0.08), transparent 24%),
+                #03070c;
+        }
+
+        .platform-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 28px;
+            background: rgba(6, 10, 15, 0.9);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .platform-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--texto);
+        }
+
+        .platform-brand img {
+            height: 42px;
+        }
+
+        .platform-brand-text strong,
+        .platform-user strong {
+            display: block;
+            color: var(--texto);
+        }
+
+        .platform-brand-text span,
+        .platform-user small,
+        .platform-side-group small,
+        .profile-card p,
+        .profile-help {
+            color: var(--texto-secundario);
+        }
+
+        .platform-user {
+            text-align: right;
+        }
+
+        .platform-layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            min-height: calc(100vh - 79px);
+        }
+
+        .platform-sidebar {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 26px 18px;
+            background: rgba(7, 11, 16, 0.82);
+        }
+
+        .platform-side-group {
+            margin-bottom: 24px;
+        }
+
+        .platform-side-group small {
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .platform-link {
+            display: block;
+            padding: 13px 14px;
+            border-radius: 16px;
+            color: var(--texto-secundario);
+            text-decoration: none;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .platform-link:hover,
+        .platform-link.active {
+            color: var(--texto);
+            border-color: rgba(0, 242, 254, 0.18);
+            background: rgba(0, 242, 254, 0.08);
+        }
+
+        .platform-content {
+            padding: 54px 28px 56px;
+        }
+
+        .profile-shell {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background: rgba(13, 17, 23, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 28px;
+        }
+
+        .profile-head {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .profile-avatar-preview {
+            width: 86px;
+            height: 86px;
+        }
+
+        .profile-card h1 {
+            text-align: left;
+            margin: 0 0 8px;
+            font-size: 2.1rem;
+        }
+
+        .profile-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .profile-field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .profile-field label {
+            color: var(--texto);
+            font-weight: 800;
+        }
+
+        .profile-field input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--texto);
+        }
+
+        .profile-field input[readonly] {
+            opacity: 0.72;
+            cursor: not-allowed;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .profile-message {
+            min-height: 24px;
+            color: var(--ciano);
+            font-weight: 700;
+        }
+
+        @media (max-width: 980px) {
+            .platform-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .platform-topbar,
+            .profile-head {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .platform-user {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="platform-page">
+        <div class="platform-topbar">
+            <a href="aluno.html" class="platform-brand">
+                <img src="img/logo.png" alt="Open Minds Logo">
+                <div class="platform-brand-text">
+                    <strong>Open Minds Platform</strong>
+                    <span>Perfil do aluno</span>
+                </div>
+            </a>
+            <div class="platform-account">
+                <img class="platform-avatar" id="platform-user-avatar" alt="Foto do perfil">
+                <div class="platform-user">
+                    <small>Conta conectada</small>
+                    <strong id="platform-user-name">Aluno Open Minds</strong>
+                    <div class="platform-actions">
+                        <a href="aluno-perfil.html" class="platform-profile-link">Perfil</a>
+                        <button type="button" class="platform-logout-btn" id="platform-logout-btn">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="platform-layout">
+            <aside class="platform-sidebar">
+                <div class="platform-side-group">
+                    <small>Plataforma</small>
+                    <a href="aluno.html" class="platform-link">Biblioteca de cursos</a>
+                    <a href="minhas_assinaturas.html" class="platform-link">Minha assinatura</a>
+                    <a href="aluno-perfil.html" class="platform-link active">Meu perfil</a>
+                </div>
+                <div class="platform-side-group">
+                    <small>Conexoes</small>
+                    <a href="aluno-blog.html" class="platform-link">Blog Open Minds</a>
+                    <a href="cursos.html" class="platform-link">Catalogo publico</a>
+                </div>
+            </aside>
+
+            <div class="platform-content">
+                <section class="profile-shell">
+                    <div class="profile-card">
+                        <div class="profile-head">
+                            <img class="profile-avatar-preview" id="profile-avatar-preview" alt="Foto do perfil">
+                            <div>
+                                <h1>Meu perfil</h1>
+                                <p>Atualize como seu nome e foto aparecem dentro da plataforma.</p>
+                            </div>
+                        </div>
+
+                        <form class="profile-form" id="profile-form">
+                            <div class="profile-field">
+                                <label for="profile-name">Nome exibido</label>
+                                <input id="profile-name" type="text" placeholder="Seu nome">
+                            </div>
+
+                            <div class="profile-field">
+                                <label for="profile-email">E-mail da conta</label>
+                                <input id="profile-email" type="email" readonly>
+                                <span class="profile-help">Contas Google usam o e-mail conectado ao Google.</span>
+                            </div>
+
+                            <div class="profile-field">
+                                <label for="profile-photo-url">Foto por link</label>
+                                <input id="profile-photo-url" type="text" placeholder="https://exemplo.com/minha-foto.jpg">
+                            </div>
+
+                            <div class="profile-field">
+                                <label for="profile-photo-file">Ou enviar uma foto do computador</label>
+                                <input id="profile-photo-file" type="file" accept="image/*">
+                            </div>
+
+                            <div class="profile-actions">
+                                <button type="submit" class="btn-ciano">Salvar perfil</button>
+                                <a href="aluno.html" class="btn-outline">Voltar para area do aluno</a>
+                            </div>
+                            <div class="profile-message" id="profile-message"></div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="platform-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = window.auth?.getUsuario?.();
+            if (!user) {
+                window.location.href = 'login.html?redirect=aluno';
+                return;
+            }
+
+            const nameInput = document.getElementById('profile-name');
+            const emailInput = document.getElementById('profile-email');
+            const photoUrlInput = document.getElementById('profile-photo-url');
+            const photoFileInput = document.getElementById('profile-photo-file');
+            const avatarPreview = document.getElementById('profile-avatar-preview');
+            const message = document.getElementById('profile-message');
+
+            const setPreview = (src) => {
+                if (src) {
+                    avatarPreview.src = src;
+                    document.getElementById('platform-user-avatar').src = src;
+                } else {
+                    avatarPreview.removeAttribute('src');
+                    document.getElementById('platform-user-avatar').removeAttribute('src');
+                }
+            };
+
+            nameInput.value = user.nome || '';
+            emailInput.value = user.email || '';
+            photoUrlInput.value = user.foto || '';
+            setPreview(user.foto || '');
+
+            photoFileInput.addEventListener('change', () => {
+                const file = photoFileInput.files?.[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = () => {
+                    photoUrlInput.value = reader.result;
+                    setPreview(reader.result);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            photoUrlInput.addEventListener('input', () => {
+                setPreview(photoUrlInput.value.trim());
+            });
+
+            document.getElementById('profile-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const updated = window.auth.atualizarPerfil({
+                    nome: nameInput.value.trim() || 'Aluno Open Minds',
+                    foto: photoUrlInput.value.trim()
+                });
+
+                if (updated) {
+                    document.getElementById('platform-user-name').textContent = updated.nome;
+                    message.textContent = 'Perfil atualizado com sucesso.';
+                }
+            });
+        });
+    </script>
+    <script src="nexi-widget-v2.js"></script>
+</body>
+</html>

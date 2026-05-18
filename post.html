@@ -27,6 +27,8 @@
             font-weight: 700;
             color: #444;
             text-transform: uppercase;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
         }
         .full-post-header {
             margin-bottom: 2rem;
@@ -41,11 +43,61 @@
         .full-post-content {
             font-size: 1.15rem;
             line-height: 1.8;
-            color: var(--texto-secundario);
-            text-align: justify;
+            color: var(--texto);
+            text-align: left;
         }
         .full-post-content p {
             margin-bottom: 1.5rem;
+            color: var(--texto);
+        }
+        .full-post-content h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: left;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--texto);
+        }
+        .full-post-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: left;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--ciano);
+        }
+        .full-post-content ul,
+        .full-post-content ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--texto);
+        }
+        .full-post-content li {
+            margin-bottom: 0.5rem;
+            color: var(--texto);
+        }
+        .full-post-content strong {
+            color: var(--texto);
+        }
+        .full-post-content pre {
+            background-color: #0d1117;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .full-post-content code {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--ciano);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .full-post-content p code {
+            background-color: #0d1117;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
         .back-link {
             color: var(--ciano);
@@ -156,7 +208,7 @@
                     <div className="full-post-header">
                         <div className="author-info" style={{ marginBottom: '1.5rem' }}>
                             <div className="author-avatar">
-                                {post.id <= 5 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                                {Number(post.id) <= 6 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
                             </div>
                             <div className="author-details">
                                 <p className="author-name">{post.autor}</p>
@@ -204,5 +256,6 @@
         const root = ReactDOM.createRoot(document.getElementById('post-target'));
         root.render(<SinglePost />);
     </script>
+    <script src="nexi-widget-v2.js"></script>
 </body>
 </html>

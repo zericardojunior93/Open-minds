@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Finalizar Compra</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checkout-page { padding: 48px 0 80px; background: radial-gradient(circle at top left, rgba(0, 242, 254, 0.12), transparent 32%), radial-gradient(circle at top right, rgba(0, 242, 254, 0.08), transparent 28%); }
+        .checkout-hero { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 24px; align-items: stretch; margin-bottom: 32px; }
+        .checkout-intro, .checkout-security, .checkout-card { background: linear-gradient(180deg, rgba(13, 17, 23, 0.98), rgba(7, 10, 14, 0.96)); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 28px; }
+        .checkout-kicker { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(0, 242, 254, 0.25); color: var(--ciano); background: rgba(0, 242, 254, 0.08); padding: 8px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 18px; }
+        .checkout-intro h1 { font-size: 3rem; line-height: 1.05; margin-bottom: 16px; }
+        .checkout-intro p, .checkout-security p, .secure-item p, .checkout-note, .summary-note, .plan-perks li, .input-hint { color: var(--texto-secundario); }
+        .checkout-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+        .checkout-pill { border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); border-radius: 16px; padding: 12px 14px; min-width: 150px; }
+        .checkout-pill strong, .secure-item strong, .order-item strong, .method-card strong, .summary-line strong { display: block; color: var(--texto); }
+        .checkout-security { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+        .secure-grid { display: grid; gap: 14px; }
+        .secure-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: rgba(255, 255, 255, 0.03); border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .secure-icon { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: rgba(0, 242, 254, 0.12); color: var(--ciano); font-size: 1.1rem; font-weight: 800; }
+        .checkout-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr); gap: 24px; align-items: start; }
+        .checkout-card { margin-bottom: 22px; }
+        .checkout-section-head { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
+        .checkout-step { color: var(--ciano); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+        .checkout-section-head h2 { font-size: 1.65rem; margin: 0 0 6px; text-align: left; }
+        .checkout-badge { padding: 10px 14px; border-radius: 999px; background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.2); color: var(--ciano); white-space: nowrap; font-size: 0.85rem; font-weight: 700; }
+        .checkout-grid, .billing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .field { display: flex; flex-direction: column; gap: 8px; }
+        .field.full { grid-column: 1 / -1; }
+        .field label { font-size: 0.92rem; font-weight: 600; color: #dbe4ee; }
+        .field input, .field select, .coupon-row input { width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.09); color: var(--texto); border-radius: 14px; padding: 14px 16px; outline: none; transition: 0.2s ease; }
+        .field input:focus, .field select:focus, .coupon-row input:focus { border-color: rgba(0, 242, 254, 0.55); box-shadow: 0 0 0 4px rgba(0, 242, 254, 0.08); }
+        .login-inline { margin-top: 18px; padding: 16px 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+        .login-inline a { color: var(--ciano); font-weight: 700; text-decoration: none; }
+        .method-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+        .method-card { position: relative; padding: 18px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); cursor: pointer; transition: 0.2s ease; }
+        .method-card:hover, .method-card.active { border-color: rgba(0, 242, 254, 0.45); background: rgba(0, 242, 254, 0.08); }
+        .method-card input { position: absolute; opacity: 0; pointer-events: none; }
+        .method-card span { display: block; color: var(--texto-secundario); font-size: 0.92rem; }
+        .payment-panel { padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); }
+        .payment-panel[hidden] { display: none; }
+        .pix-box { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: center; }
+        .pix-code { width: 120px; aspect-ratio: 1; border-radius: 16px; background: linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), radial-gradient(circle at center, rgba(0, 242, 254, 0.2), transparent 65%); background-size: 12px 12px, 12px 12px, auto; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .ticket-line { border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.18); padding: 14px 16px; margin: 14px 0; word-break: break-all; }
+        .summary-card { position: sticky; top: 96px; }
+        .summary-plan { padding: 20px; border-radius: 20px; background: linear-gradient(135deg, rgba(0, 242, 254, 0.18), rgba(0, 242, 254, 0.04)), rgba(255, 255, 255, 0.02); border: 1px solid rgba(0, 242, 254, 0.2); margin-bottom: 22px; }
+        .summary-plan h3 { font-size: 1.6rem; margin-bottom: 6px; }
+        .summary-price { display: flex; align-items: end; gap: 8px; margin: 16px 0 10px; }
+        .summary-price strong { font-size: 2rem; line-height: 1; }
+        .plan-perks { list-style: none; display: grid; gap: 10px; margin-top: 16px; }
+        .plan-perks li::before { content: "•"; color: var(--ciano); margin-right: 10px; }
+        .coupon-row, .summary-line, .order-item { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+        .coupon-row { margin: 18px 0; }
+        .coupon-row button, .summary-cta, .ghost-btn { border: none; border-radius: 14px; padding: 14px 18px; cursor: pointer; font-weight: 800; transition: 0.2s ease; }
+        .coupon-row button, .summary-cta { background: var(--ciano); color: #001115; }
+        .ghost-btn { background: transparent; color: var(--texto); border: 1px solid rgba(255, 255, 255, 0.14); }
+        .summary-lines { display: grid; gap: 14px; margin: 18px 0 24px; }
+        .summary-total { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 18px; }
+        .summary-total .summary-line strong:last-child { font-size: 1.8rem; color: var(--ciano); }
+        .summary-cta { width: 100%; font-size: 1rem; margin-bottom: 12px; }
+        .order-list { display: grid; gap: 14px; margin-top: 20px; }
+        .order-item { padding: 16px; border-radius: 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); align-items: flex-start; }
+        .order-thumb { width: 62px; height: 62px; border-radius: 16px; background: radial-gradient(circle at 30% 20%, rgba(0, 242, 254, 0.28), transparent 35%), linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0; }
+        .order-content { display: flex; gap: 14px; flex: 1; }
+        .summary-feedback { min-height: 24px; font-size: 0.92rem; color: #9ee5aa; }
+        @media (max-width: 980px) { .checkout-hero, .checkout-layout { grid-template-columns: 1fr; } .summary-card { position: static; } .method-options { grid-template-columns: 1fr; } }
+        @media (max-width: 720px) { .checkout-intro h1 { font-size: 2.3rem; } .checkout-grid, .billing-grid, .pix-box { grid-template-columns: 1fr; } .checkout-section-head, .login-inline, .coupon-row, .order-item { flex-direction: column; align-items: stretch; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="carreiras.html">Carreiras</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="minhas_assinaturas.html">Minhas assinaturas</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn"><span class="texto-ciano">Entrar</span></button>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <section class="container checkout-hero">
+            <div class="checkout-intro">
+                <span class="checkout-kicker">Checkout Open Minds</span>
+                <h1>Finalize sua <span class="texto-ciano">assinatura</span> com uma experiência de compra alinhada ao nosso ecossistema.</h1>
+                <p>Montamos esta etapa para destacar segurança, clareza dos valores e continuidade da sua jornada na plataforma. O visual conversa com o projeto atual, mas com foco total em conversão.</p>
+                <div class="checkout-meta">
+                    <div class="checkout-pill"><strong>Acesso imediato</strong><span>Liberação do plano após confirmação.</span></div>
+                    <div class="checkout-pill"><strong>Ambiente seguro</strong><span>Resumo claro, cupom e pagamento em uma só tela.</span></div>
+                    <div class="checkout-pill"><strong>Planos flexíveis</strong><span>Checkout adaptado ao plano vindo da home.</span></div>
+                </div>
+            </div>
+
+            <aside class="checkout-security">
+                <div>
+                    <span class="checkout-kicker">Proteção & confiança</span>
+                    <div class="secure-grid">
+                        <div class="secure-item"><div class="secure-icon">01</div><div><strong>Compra protegida</strong><p>Campos organizados para reduzir erro e deixar cada etapa bem visível.</p></div></div>
+                        <div class="secure-item"><div class="secure-icon">02</div><div><strong>Resumo transparente</strong><p>Subtotal, desconto, método escolhido e total atualizam em tempo real.</p></div></div>
+                        <div class="secure-item"><div class="secure-icon">03</div><div><strong>Fluxo pronto para evoluir</strong><p>Estrutura visual preparada para virar integração real com backend depois.</p></div></div>
+                    </div>
+                </div>
+                <p class="checkout-note">Referência aproveitada da imagem enviada: divisão por etapas, destaque no fechamento do pedido e leitura limpa para checkout.</p>
+            </aside>
+        </section>
+
+        <section class="container checkout-layout">
+            <div>
+                <section class="checkout-card">
+                    <div class="checkout-section-head">
+                        <div>
+                            <div class="checkout-step">Etapa 1</div>
+                            <h2>Dados pessoais</h2>
+                            <p class="input-hint">Preencha seus dados para vincular a assinatura ao seu perfil.</p>
+                        </div>
+                        <div class="checkout-badge" id="user-status">Visitante</div>
+                    </div>
+
+                    <div class="checkout-grid">
+                        <div class="field full"><label for="nome">Nome completo</label><input id="nome" type="text" placeholder="Seu nome"></div>
+                        <div class="field"><label for="email">E-mail</label><input id="email" type="email" placeholder="voce@openminds.com"></div>
+                        <div class="field"><label for="telefone">Telefone</label><input id="telefone" type="tel" placeholder="(11) 99999-9999"></div>
+                        <div class="field full"><label for="senha">Senha para acesso</label><input id="senha" type="password" placeholder="Crie uma senha para sua conta"></div>
+                    </div>
+
+                    <div class="login-inline">
+                        <div><strong>Já tem conta na Open Minds?</strong><p class="input-hint">Se você entrar antes, o checkout pode começar com seus dados preenchidos.</p></div>
+                        <a href="login.html">Ir para login</a>
+                    </div>
+                </section>
+
+                <section class="checkout-card">
+                    <div class="checkout-section-head">
+                        <div>
+                            <div class="checkout-step">Etapa 2</div>
+                            <h2>Forma de pagamento</h2>
+                            <p class="input-hint">Escolha a opção que faz mais sentido para você hoje.</p>
+                        </div>
+                        <div class="checkout-badge" id="method-badge">Cartão de crédito</div>
+                    </div>
+
+                    <div class="method-options">
+                        <label class="method-card active" data-method="card"><input type="radio" name="payment-method" value="card" checked><strong>Cartão</strong><span>Parcelamento e liberação rápida.</span></label>
+                        <label class="method-card" data-method="pix"><input type="radio" name="payment-method" value="pix"><strong>Pix</strong><span>Confirmação prática com desconto extra.</span></label>
+                        <label class="method-card" data-method="boleto"><input type="radio" name="payment-method" value="boleto"><strong>Boleto</strong><span>Pagamento tradicional com vencimento.</span></label>
+                    </div>
+
+                    <div class="payment-panel" data-panel="card">
+                        <div class="checkout-grid">
+                            <div class="field full"><label for="card-number">Número do cartão</label><input id="card-number" type="text" placeholder="0000 0000 0000 0000"></div>
+                            <div class="field full"><label for="card-name">Nome impresso no cartão</label><input id="card-name" type="text" placeholder="Como aparece no cartão"></div>
+                            <div class="field"><label for="card-expiration">Validade</label><input id="card-expiration" type="text" placeholder="MM/AA"></div>
+                            <div class="field"><label for="card-cvv">CVV</label><input id="card-cvv" type="text" placeholder="123"></div>
+                            <div class="field full"><label for="installments">Parcelamento</label><select id="installments"><option value="1">1x sem juros</option><option value="6">6x sem juros</option><option value="12" selected>12x sem juros</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="payment-panel" data-panel="pix" hidden>
+                        <div class="pix-box">
+                            <div class="pix-code" aria-hidden="true"></div>
+                            <div>
+                                <strong>Pagamento via Pix</strong>
+                                <p class="input-hint">Ao finalizar, você poderá copiar o código Pix ou escanear o QR Code. Aplicamos 5% de desconto nesta modalidade.</p>
+                                <div class="ticket-line">00020126580014BR.GOV.BCB.PIX0136openminds-checkout5204000053039865405100.005802BR5920OPEN MINDS EDU6009SAO PAULO62070503***6304ABCD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-panel" data-panel="boleto" hidden>
+                        <strong>Boleto bancário</strong>
+                        <p class="input-hint">Geramos o boleto na hora e reservamos seu plano por 2 dias corridos após a emissão.</p>
+                        <div class="ticket-line">34191.79001 01043.510047 91020.150008 5 95510000007900</div>
+                        <p class="input-hint">Ideal para empresas, reembolso corporativo ou quem prefere pagar sem cartão.</p>
+                    </div>
+                </section>
+
+                <section class="checkout-card">
+                    <div class="checkout-section-head">
+                        <div>
+                            <div class="checkout-step">Etapa 3</div>
+                            <h2>Dados de cobrança</h2>
+                            <p class="input-hint">Esses dados ajudam a deixar o pedido mais completo para futuras integrações fiscais.</p>
+                        </div>
+                    </div>
+
+                    <div class="billing-grid">
+                        <div class="field"><label for="cpf">CPF</label><input id="cpf" type="text" placeholder="000.000.000-00"></div>
+                        <div class="field"><label for="cep">CEP</label><input id="cep" type="text" placeholder="00000-000"></div>
+                        <div class="field full"><label for="endereco">Endereço</label><input id="endereco" type="text" placeholder="Rua, avenida, número e complemento"></div>
+                        <div class="field"><label for="cidade">Cidade</label><input id="cidade" type="text" placeholder="Sua cidade"></div>
+                        <div class="field"><label for="estado">Estado</label><select id="estado"><option value="">Selecione</option><option>SP</option><option>RJ</option><option>MG</option><option>PR</option><option>SC</option><option>RS</option><option>BA</option><option>PE</option><option>CE</option><option>GO</option></select></div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="checkout-card summary-card">
+                <div class="checkout-step">Resumo do pedido</div>
+                <div class="summary-plan">
+                    <span class="checkout-kicker" id="plan-discount">25% OFF</span>
+                    <h3 id="plan-name">INOVADOR</h3>
+                    <p id="plan-duration">Acesso vitalício aos conteúdos</p>
+                    <div class="summary-price"><strong id="plan-price">12x R$ 79</strong><span id="plan-period">/mês</span></div>
+                    <ul class="plan-perks" id="plan-benefits"></ul>
+                </div>
+
+                <div>
+                    <label for="coupon" class="field" style="gap: 10px;">
+                        <span style="font-weight: 700; color: var(--texto);">Cupom ou benefício</span>
+                        <span class="input-hint">Teste com `OPEN10` para ver o resumo reagir.</span>
+                    </label>
+                    <div class="coupon-row">
+                        <input id="coupon" type="text" placeholder="Digite seu cupom">
+                        <button type="button" id="apply-coupon">Aplicar</button>
+                    </div>
+                    <div class="summary-feedback" id="coupon-feedback"></div>
+                </div>
+
+                <div class="summary-lines">
+                    <div class="summary-line"><span>Subtotal</span><strong id="subtotal-value">R$ 79,00</strong></div>
+                    <div class="summary-line"><span>Desconto</span><strong id="discount-value">R$ 0,00</strong></div>
+                    <div class="summary-line"><span>Método</span><strong id="method-value">Cartão de crédito</strong></div>
+                </div>
+
+                <div class="summary-total">
+                    <div class="summary-line"><strong>Total</strong><strong id="total-value">R$ 79,00</strong></div>
+                </div>
+
+                <button class="summary-cta" id="finish-purchase">Finalizar compra</button>
+                <button class="ghost-btn" type="button" onclick="window.location.href='index.html#inicio'">Continuar navegando</button>
+                <p class="summary-note" style="margin-top: 14px;">Esta versão é visual e funcional no front-end. A confirmação final ainda pode ser conectada a uma API de pagamento depois.</p>
+
+                <div class="order-list">
+                    <div class="order-item">
+                        <div class="order-content">
+                            <div class="order-thumb"></div>
+                            <div><strong>Plano selecionado</strong><p id="order-description">Assinatura Inovador com acesso premium à plataforma.</p></div>
+                        </div>
+                        <strong id="order-price">R$ 79,00</strong>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <a href="index.html" class="logo-container">
+                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
+                    <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
+                </a>
+                <div class="social-icons">
+                    <a href="#"><img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
+                    <a href="#"><img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
+                    <a href="#"><img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
+                    <a href="#"><img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
+                    <a href="#"><img src="img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
+                    <a href="#"><img src="img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div><h4>Institucional</h4><ul><li><a href="sobre.html">Sobre Nós</a></li><li><a href="carreiras.html">Carreiras</a></li><li><a href="#">Imprensa</a></li><li><a href="blog.html">Blog</a></li><li><a href="#">Parceiros</a></li></ul></div>
+                <div><h4>Plataforma</h4><ul><li><a href="cursos.html">Cursos Tech</a></li><li><a href="#">Mentorias</a></li><li><a href="#">Certificados</a></li><li><a href="#">Marketplace</a></li><li><a href="#">Nexi IA</a></li></ul></div>
+                <div><h4>Conteúdos</h4><ul><li><a href="#">E-books</a></li><li><a href="#">Webinars</a></li><li><a href="#">Eventos</a></li><li><a href="#">Podcasts Tech</a></li><li><a href="#">Artigos</a></li></ul></div>
+                <div><h4>Fale Conosco</h4><ul><li><a href="#">Suporte</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">Central de Ajuda</a></li><li><a href="#">Vendas</a></li><li><a href="#">Ouvidoria</a></li></ul></div>
+                <div class="footer-newsletter"><h4>Novidades e Lançamentos</h4><form class="footer-newsletter-form"><input type="email" placeholder="Email*" required><button type="submit">ENVIAR</button></form></div>
+            </div>
+
+            <div class="footer-bottom">
+                <div><p>&copy; 2026 Open Minds Educação Tecnológica. Todos os direitos reservados.</p><p>PLATAFORMA INTERATIVA BRASILEIRA</p></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
+    <script src="subscription-data.js"></script>
+    <script src="nexi-widget-v2.js"></script>
+    <script>
+        const fallbackPlans = {
+            aprendiz: { nome: 'APRENDIZ', desconto: '20% OFF', precoLabel: '12x R$ 29', periodo: '/mês', duracao: 'Acesso por 12 meses', valor: 29, beneficios: ['Marketplace essencial', 'Trilhas introdutórias', 'Comunidade Open Minds'] },
+            inovador: { nome: 'INOVADOR', desconto: '25% OFF', precoLabel: '12x R$ 79', periodo: '/mês', duracao: 'Acesso vitalício aos conteúdos', valor: 79, beneficios: ['Cursos premium ilimitados', 'Gamificação completa', 'Comunidade exclusiva'] },
+            expert: { nome: 'EXPERT', desconto: '30% OFF', precoLabel: '12x R$ 149', periodo: '/mês', duracao: 'Acesso vitalício + Mentorias', valor: 149, beneficios: ['Mentorias diretas', 'Certificados reconhecidos', 'Consultoria de carreira'] }
+        };
+        const planAlias = { plan_aprendiz: 'aprendiz', plan_inovador: 'inovador', plan_expert: 'expert', aprendiz: 'aprendiz', inovador: 'inovador', expert: 'expert' };
+        const paymentLabels = { card: 'Cartão de crédito', pix: 'Pix', boleto: 'Boleto' };
+        const couponInput = document.getElementById('coupon');
+        const couponFeedback = document.getElementById('coupon-feedback');
+        let activeDiscount = 0;
+        let activeMethod = 'card';
+        function toBRL(value) { return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+        function normalizeText(value) { return value ? value.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : ''; }
+        function getPlanData() {
+            const params = new URLSearchParams(window.location.search);
+            const rawPlan = params.get('plan') || 'inovador';
+            const alias = planAlias[rawPlan.toLowerCase()] || 'inovador';
+            const planFromWindow = window.subscriptionData?.planosDisponiveis?.find((item) => item.id === `plan_${alias}`);
+            if (!planFromWindow) return fallbackPlans[alias];
+            const numericValue = Number((planFromWindow.preco.match(/R\$ (\d+)/) || [])[1]) || fallbackPlans[alias].valor;
+            return {
+                nome: normalizeText(planFromWindow.nome),
+                desconto: planFromWindow.desconto,
+                precoLabel: planFromWindow.preco,
+                periodo: '/mês',
+                duracao: normalizeText(planFromWindow.duracao),
+                valor: numericValue,
+                beneficios: planFromWindow.beneficios.slice(0, 3).map(normalizeText)
+            };
+        }
+        const activePlan = getPlanData();
+        function renderPlan() {
+            document.getElementById('plan-discount').textContent = activePlan.desconto;
+            document.getElementById('plan-name').textContent = activePlan.nome;
+            document.getElementById('plan-duration').textContent = activePlan.duracao;
+            document.getElementById('plan-price').textContent = activePlan.precoLabel;
+            document.getElementById('plan-period').textContent = activePlan.periodo;
+            document.getElementById('order-description').textContent = `Assinatura ${activePlan.nome} com acesso aos recursos mais relevantes da plataforma.`;
+            const benefitList = document.getElementById('plan-benefits');
+            benefitList.innerHTML = '';
+            activePlan.beneficios.forEach((beneficio) => {
+                const li = document.createElement('li');
+                li.textContent = beneficio;
+                benefitList.appendChild(li);
+            });
+            updateSummary();
+        }
+        function updateSummary() {
+            const methodDiscount = activeMethod === 'pix' ? activePlan.valor * 0.05 : 0;
+            const totalDiscount = activeDiscount + methodDiscount;
+            const total = Math.max(activePlan.valor - totalDiscount, 0);
+            document.getElementById('subtotal-value').textContent = toBRL(activePlan.valor);
+            document.getElementById('discount-value').textContent = `- ${toBRL(totalDiscount)}`;
+            document.getElementById('total-value').textContent = toBRL(total);
+            document.getElementById('order-price').textContent = toBRL(total);
+            document.getElementById('method-value').textContent = paymentLabels[activeMethod];
+            document.getElementById('method-badge').textContent = paymentLabels[activeMethod];
+        }
+        function hydrateUser() {
+            const user = window.auth?.getUsuario?.();
+            if (!user) return;
+            document.getElementById('nome').value = user.nome || '';
+            document.getElementById('email').value = user.email || '';
+            document.getElementById('user-status').textContent = 'Conta conectada';
+        }
+        document.querySelectorAll('.method-card').forEach((card) => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.method-card').forEach((item) => item.classList.remove('active'));
+                card.classList.add('active');
+                activeMethod = card.dataset.method;
+                document.querySelectorAll('[data-panel]').forEach((panel) => { panel.hidden = panel.dataset.panel !== activeMethod; });
+                updateSummary();
+            });
+        });
+        document.getElementById('apply-coupon').addEventListener('click', () => {
+            const code = couponInput.value.trim().toUpperCase();
+            if (code === 'OPEN10') { activeDiscount = activePlan.valor * 0.1; couponFeedback.textContent = 'Cupom aplicado: 10% de desconto no plano.'; }
+            else if (code === 'NEXI25') { activeDiscount = activePlan.valor * 0.25; couponFeedback.textContent = 'Cupom aplicado: 25% de desconto especial Nexi.'; }
+            else if (!code) { activeDiscount = 0; couponFeedback.textContent = 'Digite um cupom para validar o benefício.'; }
+            else { activeDiscount = 0; couponFeedback.textContent = 'Cupom não encontrado nesta demonstração.'; }
+            updateSummary();
+        });
+        document.getElementById('finish-purchase').addEventListener('click', () => {
+            const name = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            if (!name || !email) {
+                couponFeedback.textContent = 'Preencha ao menos nome e e-mail antes de finalizar.';
+                return;
+            }
+            const total = document.getElementById('total-value').textContent;
+            alert(`Pedido pronto para integração.\n\nPlano: ${activePlan.nome}\nMétodo: ${paymentLabels[activeMethod]}\nTotal: ${total}`);
+        });
+        renderPlan();
+        hydrateUser();
+    </script>
+</body>
+</html>

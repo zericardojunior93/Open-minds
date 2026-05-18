@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Aulas</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        header,
+        footer {
+            display: none;
+        }
+
+        .platform-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(0, 242, 254, 0.08), transparent 24%),
+                #03070c;
+        }
+
+        .platform-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 28px;
+            background: rgba(6, 10, 15, 0.9);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .platform-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--texto);
+        }
+
+        .platform-brand img {
+            height: 42px;
+        }
+
+        .platform-brand-text strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .platform-brand-text span,
+        .platform-user small,
+        .platform-side-group small {
+            color: var(--texto-secundario);
+        }
+
+        .platform-user {
+            text-align: right;
+        }
+
+        .platform-user strong {
+            display: block;
+            color: var(--texto);
+        }
+
+        .platform-layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            min-height: calc(100vh - 79px);
+        }
+
+        .platform-sidebar {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 26px 18px;
+            background: rgba(7, 11, 16, 0.82);
+        }
+
+        .platform-side-group {
+            margin-bottom: 24px;
+        }
+
+        .platform-side-group small {
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .platform-link {
+            display: block;
+            padding: 13px 14px;
+            border-radius: 16px;
+            color: var(--texto-secundario);
+            text-decoration: none;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .platform-link:hover,
+        .platform-link.active {
+            color: var(--texto);
+            border-color: rgba(0, 242, 254, 0.18);
+            background: rgba(0, 242, 254, 0.08);
+        }
+
+        .platform-content {
+            padding: 0 28px 42px;
+        }
+
+        .lesson-page {
+            padding: 72px 0 90px;
+            background:
+                radial-gradient(circle at top right, rgba(0, 242, 254, 0.12), transparent 28%),
+                linear-gradient(180deg, rgba(13, 17, 23, 0.16), rgba(0, 0, 0, 0));
+        }
+
+        .lesson-shell {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) 380px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .lesson-player,
+        .lesson-sidebar,
+        .lesson-summary {
+            background: rgba(13, 17, 23, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+        }
+
+        .lesson-player {
+            overflow: hidden;
+        }
+
+        .lesson-media {
+            min-height: 380px;
+            padding: 34px;
+            display: flex;
+            align-items: end;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55)),
+                radial-gradient(circle at top left, rgba(0, 242, 254, 0.22), transparent 34%);
+        }
+
+        .lesson-tag {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 242, 254, 0.28);
+            background: rgba(0, 242, 254, 0.08);
+            color: var(--ciano);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lesson-media h1 {
+            font-size: 2.6rem;
+            line-height: 1.08;
+            margin-bottom: 12px;
+        }
+
+        .lesson-media p,
+        .lesson-overview p,
+        .lesson-item span,
+        .lesson-summary p,
+        .lesson-stat span {
+            color: var(--texto-secundario);
+        }
+
+        .lesson-overview {
+            padding: 28px 30px 32px;
+        }
+
+        .lesson-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .lesson-stat {
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .lesson-sidebar {
+            padding: 24px;
+            position: sticky;
+            top: 96px;
+        }
+
+        .lesson-sidebar h2,
+        .lesson-summary h2 {
+            margin: 0 0 16px;
+            font-size: 1.4rem;
+            text-align: left;
+        }
+
+        .lesson-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .lesson-item {
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .lesson-item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--texto);
+        }
+
+        .lesson-summary {
+            margin-top: 24px;
+            padding: 24px;
+        }
+
+        .lesson-summary .btn-ciano,
+        .lesson-summary .btn-outline {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 980px) {
+            .platform-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .lesson-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lesson-media {
+                min-height: 280px;
+                padding: 24px;
+            }
+
+            .lesson-media h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="carreiras.html">Carreiras</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="aluno.html" class="active">Area do aluno</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">
+                <span class="texto-ciano">Entrar</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="platform-page">
+        <div class="platform-topbar">
+            <a href="aluno.html" class="platform-brand">
+                <img src="img/logo.png" alt="Open Minds Logo">
+                <div class="platform-brand-text">
+                    <strong>Open Minds Platform</strong>
+                    <span>Sala de aula</span>
+                </div>
+            </a>
+            <div class="platform-account">
+                <img class="platform-avatar" id="platform-user-avatar" alt="Foto do perfil">
+                <div class="platform-user">
+                    <small>Conta conectada</small>
+                    <strong id="platform-user-name">Aluno Open Minds</strong>
+                    <div class="platform-actions">
+                        <a href="aluno-perfil.html" class="platform-profile-link">Perfil</a>
+                        <button type="button" class="platform-logout-btn" id="platform-logout-btn">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="platform-layout">
+            <aside class="platform-sidebar">
+                <div class="platform-side-group">
+                    <small>Plataforma</small>
+                    <a href="aluno.html" class="platform-link">Biblioteca de cursos</a>
+                    <a href="minhas_assinaturas.html" class="platform-link">Minha assinatura</a>
+                    <a href="aluno-perfil.html" class="platform-link">Meu perfil</a>
+                    <a href="aulas.html" class="platform-link active">Aulas</a>
+                </div>
+                <div class="platform-side-group">
+                    <small>Conexoes</small>
+                    <a href="aluno-blog.html" class="platform-link">Blog Open Minds</a>
+                </div>
+            </aside>
+
+            <div class="platform-content">
+    <div class="lesson-page">
+        <section class="container lesson-shell">
+            <div>
+                <article class="lesson-player">
+                    <div class="lesson-media" id="lesson-media">
+                        <div>
+                            <span class="lesson-tag" id="lesson-area">Curso</span>
+                            <h1 id="lesson-title">Carregando curso...</h1>
+                            <p id="lesson-description">Preparando seu ambiente de estudo.</p>
+                        </div>
+                    </div>
+                    <div class="lesson-overview">
+                        <h2 style="margin: 0 0 12px; text-align: left; font-size: 1.5rem;">Sobre esta trilha</h2>
+                        <p id="lesson-overview-text">Assim que o curso carregar, voce vera aqui o resumo da experiencia de aprendizagem.</p>
+                        <div class="lesson-stats">
+                            <div class="lesson-stat"><strong id="lesson-level">-</strong><span>Nivel</span></div>
+                            <div class="lesson-stat"><strong id="lesson-duration">-</strong><span>Duracao</span></div>
+                            <div class="lesson-stat"><strong id="lesson-students">-</strong><span>Alunos</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="lesson-summary">
+                    <h2>Como estudar aqui</h2>
+                    <p>Use esta pagina como o hub da trilha. Depois podemos evoluir para video real, progresso salvo, material complementar e desbloqueio por modulo.</p>
+                    <a href="aluno.html" class="btn-outline">Voltar para a area do aluno</a>
+                    <a href="cursos.html" class="btn-ciano">Ver catalogo completo</a>
+                </section>
+            </div>
+
+            <aside class="lesson-sidebar">
+                <h2>Lista de aulas</h2>
+                <div class="lesson-list" id="lesson-list"></div>
+            </aside>
+        </section>
+    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <a href="index.html" class="logo-container">
+                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
+                    <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
+                </a>
+                <div class="social-icons">
+                    <a href="#"><img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
+                    <a href="#"><img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
+                    <a href="#"><img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
+                    <a href="#"><img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
+                    <a href="#"><img src="img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
+                    <a href="#"><img src="img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre Nos</a></li>
+                        <li><a href="carreiras.html">Carreiras</a></li>
+                        <li><a href="#">Imprensa</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Parceiros</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="cursos.html">Cursos Tech</a></li>
+                        <li><a href="#">Mentorias</a></li>
+                        <li><a href="#">Certificados</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                        <li><a href="#">Nexi IA</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Conteudos</h4>
+                    <ul>
+                        <li><a href="#">E-books</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Eventos</a></li>
+                        <li><a href="#">Podcasts Tech</a></li>
+                        <li><a href="#">Artigos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Fale Conosco</h4>
+                    <ul>
+                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Vendas</a></li>
+                        <li><a href="#">Ouvidoria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Novidades e Lancamentos</h4>
+                    <form class="footer-newsletter-form">
+                        <input type="email" placeholder="Email*" required>
+                        <button type="submit">ENVIAR</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2026 Open Minds Educacao Tecnologica. Todos os direitos reservados.</p>
+                    <p>PLATAFORMA INTERATIVA BRASILEIRA</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
+    <script src="platform-auth.js"></script>
+    <script src="course-data.js"></script>
+    <script src="script.js"></script>
+    <script src="nexi-widget-v2.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = window.auth?.getUsuario?.();
+            if (!user) {
+                window.location.href = 'login.html?redirect=aluno';
+                return;
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('curso');
+            const course = (window.courseData || []).find((item) => item.id === slug) || window.courseData?.[0];
+
+            if (!course) {
+                window.location.href = 'aluno.html';
+                return;
+            }
+
+            document.getElementById('platform-user-name').textContent = user.nome || 'Aluno Open Minds';
+            document.title = `Open Minds | ${course.title}`;
+            document.getElementById('lesson-area').textContent = course.area;
+            document.getElementById('lesson-title').textContent = course.title;
+            document.getElementById('lesson-description').textContent = `Aluno ${user.nome.split(' ')[0]}, esta e a sua pagina de aulas para a trilha selecionada.`;
+            document.getElementById('lesson-overview-text').textContent = course.description;
+            document.getElementById('lesson-level').textContent = course.level;
+            document.getElementById('lesson-duration').textContent = course.duration;
+            document.getElementById('lesson-students').textContent = course.students;
+            document.getElementById('lesson-media').style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55)), radial-gradient(circle at top left, rgba(0, 242, 254, 0.22), transparent 34%), url("${course.image}")`;
+            document.getElementById('lesson-media').style.backgroundSize = 'cover';
+            document.getElementById('lesson-media').style.backgroundPosition = 'center';
+
+            document.getElementById('lesson-list').innerHTML = course.lessons.map((lesson, index) => `
+                <div class="lesson-item">
+                    <strong>Aula ${index + 1}</strong>
+                    <span>${lesson}</span>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

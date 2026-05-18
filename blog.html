@@ -150,7 +150,7 @@
                     <div className="blog-card-header">
                         <div className="author-info">
                             <div className="author-avatar">
-                                {post.id <= 5 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                                {Number(post.id) <= 6 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
                             </div>
                             <div class="author-details">
                                 <p class="author-name">{post.autor}</p>
@@ -188,5 +188,6 @@
     </script>
 
     <script src="script.js"></script>
+    <script src="nexi-widget-v2.js"></script>
 </body>
 </html>

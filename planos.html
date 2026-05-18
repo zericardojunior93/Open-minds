@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Minds | Planos</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .plans-page {
+            min-height: 100vh;
+            padding: 72px 0 96px;
+            background:
+                radial-gradient(circle at top center, rgba(0, 242, 254, 0.1), transparent 28%),
+                #000;
+        }
+
+        .plans-page .container {
+            max-width: 1320px;
+        }
+
+        .plans-header {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .plans-header h1 {
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 1.08;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .plans-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: var(--texto-secundario);
+            font-size: 1rem;
+        }
+
+        .plans-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .plans-showcase .pricing-card {
+            min-height: 100%;
+            background: linear-gradient(180deg, #0d1117 0%, #0f141a 100%);
+            border-radius: 18px;
+            padding: 34px 30px 32px;
+        }
+
+        .plans-showcase .pricing-card.featured {
+            transform: none;
+            box-shadow: 0 0 34px rgba(0, 242, 254, 0.14);
+        }
+
+        .plans-showcase .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .plans-showcase .discount {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 24px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--ciano);
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+
+        .plans-showcase .price {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .plans-showcase .price span {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--texto-secundario);
+        }
+
+        .plans-showcase .duration {
+            color: var(--texto-secundario);
+            margin-bottom: 28px;
+        }
+
+        .plans-showcase .btn-outline,
+        .plans-showcase .btn-ciano {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .plans-showcase ul {
+            list-style: none;
+            display: grid;
+            gap: 13px;
+        }
+
+        .plans-showcase li {
+            color: var(--texto-secundario);
+            font-size: 0.96rem;
+        }
+
+        @media (max-width: 1024px) {
+            .plans-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo-container">
+                <img src="img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="carreiras.html">Carreiras</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="planos.html" class="active">Planos</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">
+                <span class="texto-ciano">Entrar</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="plans-page">
+        <section class="container">
+            <div class="plans-header">
+                <h1>Planos criados para impulsionar seu crescimento</h1>
+                <p>Escolha a jornada que faz mais sentido para o seu momento e continue evoluindo com a experiencia da Open Minds.</p>
+            </div>
+
+            <div class="plans-showcase">
+                <div class="pricing-card">
+                    <h3>APRENDIZ</h3>
+                    <span class="discount">20% OFF</span>
+                    <div class="price">12x R$ 29 <span>/mês</span></div>
+                    <p class="duration">Acesso por 12 meses</p>
+                    <a href="compra.html?plan=aprendiz" class="btn-outline">MATRICULAR-SE</a>
+                    <ul>
+                        <li>✓ Marketplace essencial</li>
+                        <li>✓ Trilhas introdutórias</li>
+                        <li>✓ Comunidade Open Minds</li>
+                        <li>✓ Suporte via fórum</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>INOVADOR</h3>
+                    <span class="discount">25% OFF</span>
+                    <div class="price">12x R$ 79 <span>/mês</span></div>
+                    <p class="duration">Acesso vitalício aos conteúdos</p>
+                    <a href="compra.html?plan=inovador" class="btn-ciano">ASSINAR AGORA</a>
+                    <ul>
+                        <li>✓ Cursos premium ilimitados</li>
+                        <li>✓ Gamificação completa</li>
+                        <li>✓ Comunidade exclusiva</li>
+                        <li>✓ Marketplace híbrido</li>
+                        <li>✓ Suporte prioritário</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>EXPERT</h3>
+                    <span class="discount">30% OFF</span>
+                    <div class="price">12x R$ 149 <span>/mês</span></div>
+                    <p class="duration">Acesso vitalício + Mentorias</p>
+                    <a href="compra.html?plan=expert" class="btn-outline">ESCOLHER EXPERT</a>
+                    <ul>
+                        <li>✓ Mentorias diretas (1on1)</li>
+                        <li>✓ Certificados reconhecidos</li>
+                        <li>✓ Projetos com parceiros reais</li>
+                        <li>✓ Todos benefícios Inovador</li>
+                        <li>✓ Consultoria de Carreira</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <a href="index.html" class="logo-container">
+                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
+                    <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
+                </a>
+                <div class="social-icons">
+                    <a href="#"><img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
+                    <a href="#"><img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
+                    <a href="#"><img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
+                    <a href="#"><img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
+                    <a href="#"><img src="img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
+                    <a href="#"><img src="img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="carreiras.html">Carreiras</a></li>
+                        <li><a href="#">Imprensa</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Parceiros</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="cursos.html">Cursos Tech</a></li>
+                        <li><a href="#">Mentorias</a></li>
+                        <li><a href="#">Certificados</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                        <li><a href="#">Nexi IA</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Conteúdos</h4>
+                    <ul>
+                        <li><a href="#">E-books</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Eventos</a></li>
+                        <li><a href="#">Podcasts Tech</a></li>
+                        <li><a href="#">Artigos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Fale Conosco</h4>
+                    <ul>
+                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Vendas</a></li>
+                        <li><a href="#">Ouvidoria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Novidades e Lançamentos</h4>
+                    <form class="footer-newsletter-form">
+                        <input type="email" placeholder="Email*" required>
+                        <button type="submit">ENVIAR</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2026 Open Minds Educação Tecnológica. Todos os direitos reservados.</p>
+                    <p>PLATAFORMA INTERATIVA BRASILEIRA</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="header-auth.js"></script>
+    <script src="script.js"></script>
+    <script src="nexi-widget-v2.js"></script>
+</body>
+</html>

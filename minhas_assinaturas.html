@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,265 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        header,
+        footer {
+            display: none;
+        }
+
+        .platform-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(0, 242, 254, 0.08), transparent 24%),
+                #03070c;
+        }
+
+        .platform-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 28px;
+            background: rgba(6, 10, 15, 0.9);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .platform-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--texto);
+        }
+
+        .platform-brand img {
+            height: 42px;
+        }
+
+        .platform-brand-text strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .platform-brand-text span,
+        .platform-user small,
+        .platform-side-group small {
+            color: var(--texto-secundario);
+        }
+
+        .platform-user {
+            text-align: right;
+        }
+
+        .platform-user strong {
+            display: block;
+            color: var(--texto);
+        }
+
+        .platform-layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            min-height: calc(100vh - 79px);
+        }
+
+        .platform-sidebar {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 26px 18px;
+            background: rgba(7, 11, 16, 0.82);
+        }
+
+        .platform-side-group {
+            margin-bottom: 24px;
+        }
+
+        .platform-side-group small {
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .platform-link {
+            display: block;
+            padding: 13px 14px;
+            border-radius: 16px;
+            color: var(--texto-secundario);
+            text-decoration: none;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
+        }
+
+        .platform-link:hover,
+        .platform-link.active {
+            color: var(--texto);
+            border-color: rgba(0, 242, 254, 0.18);
+            background: rgba(0, 242, 254, 0.08);
+        }
+
+        .platform-content {
+            padding: 0 28px 42px;
+        }
+
+        .subscription-shell {
+            padding-top: 2.5rem;
+        }
+
+        .subscription-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) 320px;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .subscription-hero-card,
+        .subscription-side-card,
+        .subscription-detail-card {
+            background: linear-gradient(180deg, rgba(13, 17, 23, 0.98), rgba(10, 14, 19, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 26px;
+        }
+
+        .subscription-kicker {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            color: var(--ciano);
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.24);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .subscription-hero-card h1 {
+            font-size: 2.6rem;
+            line-height: 1.05;
+            margin-bottom: 14px;
+        }
+
+        .subscription-hero-card p,
+        .subscription-side-card p,
+        .detail-text,
+        .metric-label,
+        .payment-item,
+        .benefit-list li {
+            color: var(--texto-secundario);
+        }
+
+        .subscription-quick-grid,
+        .subscription-metrics,
+        .subscription-details-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .subscription-quick-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 22px;
+        }
+
+        .subscription-pill,
+        .metric-card,
+        .payment-card {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .subscription-pill strong,
+        .metric-card strong,
+        .detail-title,
+        .payment-card strong {
+            display: block;
+            color: var(--texto);
+        }
+
+        .subscription-side-card {
+            display: grid;
+            align-content: start;
+            gap: 16px;
+        }
+
+        .subscription-side-card h3,
+        .subscription-detail-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .subscription-details-grid {
+            grid-template-columns: 1fr 1fr;
+            margin-top: 26px;
+        }
+
+        .benefit-list,
+        .payment-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            color: var(--ciano);
+            margin-right: 10px;
+            font-weight: 900;
+        }
+
+        .subscription-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .subscription-actions a,
+        .subscription-actions button {
+            width: auto !important;
+        }
+
+        .plans-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 16px;
+            margin: 40px 0 10px;
+        }
+
+        .plans-heading h2 {
+            margin: 0;
+            text-align: left;
+            font-size: 2rem;
+        }
+
+        @media (max-width: 980px) {
+            .platform-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .subscription-hero,
+            .subscription-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subscription-quick-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -24,6 +283,7 @@
                     <li><a href="cursos.html">Cursos</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="minhas_assinaturas.html" class="active">Minhas assinaturas</a></li>
+                    <li><a href="aluno.html">Area do aluno</a></li>
                 </ul>
             </nav>
             <button class="login-btn">
@@ -32,91 +292,56 @@
         </div>
     </header>
 
-    <main class="container subscriptions-section" id="subscriptions-root">
-        <!-- React montará o painel aqui -->
-        <p style="color: #444;">Carregando painel de assinaturas...</p>
-    </main>
-
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-top">
-                <a href="index.html" class="logo-container">
-                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
-                    <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
-                </a>
-                <div class="social-icons">
-                    <a href="#"><img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
-                    <a href="#"><img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
-                    <a href="#"><img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
-                    <a href="#"><img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
-                    <a href="#"><img src="img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
-                    <a href="#"><img src="img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
+    <main class="platform-page">
+        <div class="platform-topbar">
+            <a href="aluno.html" class="platform-brand">
+                <img src="img/logo.png" alt="Open Minds Logo">
+                <div class="platform-brand-text">
+                    <strong>Open Minds Platform</strong>
+                    <span>Assinatura e acesso</span>
                 </div>
-            </div>
-            
-            <div class="footer-links">
-                <div>
-                    <h4>Institucional</h4>
-                    <ul>
-                        <li><a href="sobre.html">Sobre Nós</a></li>
-                        <li><a href="carreiras.html">Carreiras</a></li>
-                        <li><a href="#">Imprensa</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="#">Parceiros</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Plataforma</h4>
-                    <ul>
-                        <li><a href="cursos.html">Cursos Tech</a></li>
-                        <li><a href="#">Mentorias</a></li>
-                        <li><a href="#">Certificados</a></li>
-                        <li><a href="#">Marketplace</a></li>
-                        <li><a href="#">Nexi IA</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Conteúdos</h4>
-                    <ul>
-                        <li><a href="#">E-books</a></li>
-                        <li><a href="#">Webinars</a></li>
-                        <li><a href="#">Eventos</a></li>
-                        <li><a href="#">Podcasts Tech</a></li>
-                        <li><a href="#">Artigos</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Fale Conosco</h4>
-                    <ul>
-                        <li><a href="#">Suporte</a></li>
-                        <li><a href="#">WhatsApp</a></li>
-                        <li><a href="#">Central de Ajuda</a></li>
-                        <li><a href="#">Vendas</a></li>
-                        <li><a href="#">Ouvidoria</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Novidades e Lançamentos</h4>
-                    <form class="footer-newsletter-form">
-                        <input type="email" placeholder="Email*" required>
-                        <button type="submit">ENVIAR</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div>
-                    <p>&copy; 2026 Open Minds Educação Tecnológica. Todos os direitos reservados.</p>
-                    <p>PLATAFORMA INTERATIVA BRASILEIRA</p>
+            </a>
+            <div class="platform-account">
+                <img class="platform-avatar" id="platform-user-avatar" alt="Foto do perfil">
+                <div class="platform-user">
+                    <small>Conta conectada</small>
+                    <strong id="platform-user-name">Aluno Open Minds</strong>
+                    <div class="platform-actions">
+                        <a href="aluno-perfil.html" class="platform-profile-link">Perfil</a>
+                        <button type="button" class="platform-logout-btn" id="platform-logout-btn">Sair</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <div class="platform-layout">
+            <aside class="platform-sidebar">
+                <div class="platform-side-group">
+                    <small>Plataforma</small>
+                    <a href="aluno.html" class="platform-link">Biblioteca de cursos</a>
+                    <a href="minhas_assinaturas.html" class="platform-link active">Minha assinatura</a>
+                    <a href="aluno-perfil.html" class="platform-link">Meu perfil</a>
+                </div>
+                <div class="platform-side-group">
+                    <small>Conexoes</small>
+                    <a href="aluno-blog.html" class="platform-link">Blog Open Minds</a>
+                </div>
+            </aside>
+
+            <div class="platform-content">
+    <div class="container subscriptions-section subscription-shell" id="subscriptions-root">
+        <p style="color: #444;">Carregando painel de assinaturas...</p>
+    </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Scripts de Dados e Lógica -->
     <script src="auth.js"></script>
     <script src="header-auth.js"></script>
+    <script src="platform-auth.js"></script>
     <script src="subscription-data.js"></script>
+    <script src="nexi-widget-v2.js"></script>
 
     <!-- Carregando React e Babel Standalone via CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -163,8 +388,13 @@
         // Componente Principal
         function SubscriptionApp() {
             const [data, setData] = useState(null);
+            const usuario = window.auth?.getUsuario?.();
 
             useEffect(() => {
+                if (!window.auth?.estaLogado?.()) {
+                    window.location.href = 'login.html?redirect=aluno';
+                    return;
+                }
                 if (window.subscriptionData) {
                     setData(window.subscriptionData);
                 }
@@ -172,36 +402,146 @@
 
             if (!data) return <p style={{ color: '#444' }}>Carregando...</p>;
 
+            if (usuario) {
+                const platformUser = document.getElementById('platform-user-name');
+                if (platformUser) platformUser.textContent = usuario.nome;
+            }
+
+            const activePlanName = data.minhaAssinatura.plano.toUpperCase();
+            const activePlan = data.planosDisponiveis.find((plan) => plan.nome === activePlanName) || data.planosDisponiveis[0];
+
             return (
                 <div>
-                    {/* Seção: Minha Assinatura Atual */}
+                    <section className="subscription-hero">
+                        <div className="subscription-hero-card">
+                            <span className="subscription-kicker">Plano ativo</span>
+                            <h1>{usuario ? `${usuario.nome.split(' ')[0]}, sua assinatura` : 'Sua assinatura'} <span className="texto-ciano">esta em dia</span>.</h1>
+                            <p>Deixamos aqui um painel mais completo para o assinante acompanhar o plano atual, beneficios liberados e atalhos para continuar estudando sem sair do fluxo da plataforma.</p>
+                            <div className="subscription-quick-grid">
+                                {data.minhaAssinatura.metricas.map((item, index) => (
+                                    <div className="subscription-pill" key={index}>
+                                        <strong>{item.valor}</strong>
+                                        <span className="metric-label">{item.label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="subscription-actions">
+                                <a href="aluno.html" className="btn-ciano">Ir para area do aluno</a>
+                                <a href="cursos.html" className="btn-outline">Ver catalogo de cursos</a>
+                            </div>
+                        </div>
+
+                        <aside className="subscription-side-card">
+                            <span className="subscription-kicker">Status da conta</span>
+                            <h3>{data.minhaAssinatura.plano} <span className="sub-status">{data.minhaAssinatura.status}</span></h3>
+                            <p className="detail-text">Acesso atual: {data.minhaAssinatura.acesso}</p>
+                            <div className="metric-card">
+                                <strong>Renovacao automatica</strong>
+                                <span className="metric-label">{data.minhaAssinatura.renovacaoAutomatica}</span>
+                            </div>
+                            <div className="metric-card">
+                                <strong>Progresso atual</strong>
+                                <span className="metric-label">{data.minhaAssinatura.progresso}</span>
+                            </div>
+                            <div className="metric-card">
+                                <strong>Suporte</strong>
+                                <span className="metric-label">{data.minhaAssinatura.suporte}</span>
+                            </div>
+                        </aside>
+                    </section>
+
                     <section>
                         <h2 style={{ marginBottom: '2rem', fontSize: '1.8rem' }}>Minha <span className="texto-ciano">Assinatura</span></h2>
                         <div className="current-subscription-banner">
                             <div className="sub-info">
                                 <h3>{data.minhaAssinatura.plano} <span className="sub-status">{data.minhaAssinatura.status}</span></h3>
-                                <p className="sub-details">Próxima renovação: <strong>{data.minhaAssinatura.proximaCobranca}</strong> | Valor: <strong>{data.minhaAssinatura.valor}</strong></p>
+                                <p className="sub-details">Inicio: <strong>{data.minhaAssinatura.inicio}</strong> | Próxima renovação: <strong>{data.minhaAssinatura.proximaCobranca}</strong> | Valor: <strong>{data.minhaAssinatura.valor}</strong></p>
                             </div>
-                            <button 
-                                className="plan-btn plan-btn-outline" 
-                                style={{ width: 'auto', padding: '12px 30px' }}
-                                onClick={() => alert('Deseja realmente cancelar? Entre em contato com nosso suporte.')}
-                            >
-                                Cancelar Plano
-                            </button>
+                            <div className="subscription-actions" style={{ marginTop: 0 }}>
+                                <a href="aluno.html" className="plan-btn plan-btn-filled" style={{ width: 'auto', padding: '12px 30px', textDecoration: 'none' }}>
+                                    Entrar na Area do Aluno
+                                </a>
+                                <button 
+                                    className="plan-btn plan-btn-outline" 
+                                    style={{ width: 'auto', padding: '12px 30px' }}
+                                    onClick={() => alert('Deseja realmente cancelar? Entre em contato com nosso suporte.')}
+                                >
+                                    Cancelar Plano
+                                </button>
+                            </div>
                         </div>
                     </section>
 
-                    {/* Seção: Planos */}
-                    <section style={{ marginTop: '4rem' }}>
-                        <h2 style={{ textAlign: 'center', marginBottom: '1rem', fontSize: '2rem' }}>Escolha o seu <span className="texto-ciano">Próximo Nível</span></h2>
-                        <p style={{ textAlign: 'center', color: '#888', marginBottom: '3rem' }}>Seja um assinante e tenha o poder da tecnologia em suas mãos.</p>
-                        
-                        <div className="plans-grid">
-                            {data.planosDisponiveis.map(plan => (
-                                <PlanCard key={plan.id} plan={plan} />
-                            ))}
+                    <section className="subscription-details-grid">
+                        <div className="subscription-detail-card">
+                            <h3>Beneficios do plano ativo</h3>
+                            <ul className="benefit-list">
+                                {data.minhaAssinatura.recursosAtivos.map((benefit, index) => (
+                                    <li key={index}>{benefit}</li>
+                                ))}
+                            </ul>
                         </div>
+
+                        <div className="subscription-detail-card">
+                            <h3>Cobranca e acesso</h3>
+                            <div className="payment-list">
+                                {data.minhaAssinatura.pagamentos.map((item, index) => (
+                                    <div className="payment-card" key={index}>
+                                        <strong>Atualizacao {index + 1}</strong>
+                                        <span className="payment-item">{item}</span>
+                                    </div>
+                                ))}
+                                <div className="payment-card">
+                                    <strong>Certificado</strong>
+                                    <span className="payment-item">{data.minhaAssinatura.certificado}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="plans-heading">
+                        <div>
+                            <h2>Planos da <span className="texto-ciano">Open Minds</span></h2>
+                            <p className="detail-text">Seu plano ativo continua em destaque, mas deixamos as outras opcoes visiveis para upgrade quando fizer sentido.</p>
+                        </div>
+                    </section>
+
+                    <section className="plans-grid">
+                        {data.planosDisponiveis.map((plan) => {
+                            const isCurrent = plan.nome === activePlan.nome;
+                            return (
+                                <div className={`plan-card ${isCurrent || plan.destaque ? 'featured' : ''}`} key={plan.id}>
+                                    <div className="plan-badge" style={{ marginBottom: '20px' }}>
+                                        {isCurrent ? 'SEU PLANO ATUAL' : plan.desconto}
+                                    </div>
+                                    <h3>{plan.nome}</h3>
+                                    <div className="plan-price">
+                                        <span className="amount">{plan.preco}</span>
+                                        <span className="period">{plan.periodo}</span>
+                                    </div>
+                                    <p className="plan-duration">{plan.duracao}</p>
+                                    <div className="plan-features">
+                                        <ul>
+                                            {plan.beneficios.map((benefit, index) => (
+                                                <li key={index}>{benefit}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    {isCurrent ? (
+                                        <a href="aluno.html" className="plan-btn plan-btn-filled" style={{ textDecoration: 'none' }}>
+                                            Continuar estudando
+                                        </a>
+                                    ) : (
+                                        <button 
+                                            className={`plan-btn ${plan.destaque ? 'plan-btn-filled' : 'plan-btn-outline'}`}
+                                            onClick={() => alert(`Fluxo de upgrade para o plano ${plan.nome} pode ser conectado ao checkout.`)}
+                                        >
+                                            {plan.nome === 'EXPERT' ? 'Fazer upgrade' : plan.botao}
+                                        </button>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </section>
                 </div>
             );
