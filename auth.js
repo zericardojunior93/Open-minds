@@ -3,6 +3,7 @@ const AUTH_KEY = 'open_minds_user';
 const USERS_KEY = 'open_minds_all_users';
 const LOGOUT_KEY = 'open_minds_logged_out';
 const FIREBASE_CONFIG = window.OPEN_MINDS_FIREBASE_CONFIG || null;
+const LOCAL_AUTH_CONFIG = window.OPEN_MINDS_LOCAL_AUTH || { users: [] };
 
 // FunÃ§Ã£o para criar um hash SHA-256 da senha
 async function hashSenha(senha) {
@@ -66,6 +67,13 @@ function getFirebaseAuth() {
     return firebase.auth();
 }
 
+function buscarUsuarioLocalAutorizado(email, senhaHash) {
+    const emailNormalizado = (email || '').trim().toLowerCase();
+    return (LOCAL_AUTH_CONFIG.users || []).find((user) => {
+        return (user.email || '').toLowerCase() === emailNormalizado && user.senhaHash === senhaHash;
+    });
+}
+
 window.auth = {
     // Cadastrar novo usuÃ¡rio
     cadastrar: async (nome, email, senha) => {
@@ -89,6 +97,29 @@ window.auth = {
     login: async (email, senha) => {
         const users = JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
         const senhaHash = await hashSenha(senha);
+        const usuarioAutorizado = buscarUsuarioLocalAutorizado(email, senhaHash);
+
+        if (usuarioAutorizado) {
+            const user = {
+                id: usuarioAutorizado.id,
+                nome: usuarioAutorizado.nome || 'Aluno',
+                email: usuarioAutorizado.email,
+                foto: usuarioAutorizado.foto || '',
+                provider: 'local'
+            };
+            const userIndex = users.findIndex((item) => (item.email || '').toLowerCase() === user.email.toLowerCase());
+
+            if (userIndex === -1) {
+                users.push({ ...user, senha: senhaHash });
+            } else {
+                users[userIndex] = { ...users[userIndex], ...user, senha: senhaHash };
+            }
+
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+            localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+            localStorage.removeItem(LOGOUT_KEY);
+            return { success: true };
+        }
         
         // Tenta encontrar pelo hash (novo padrÃ£o)
         let userIndex = users.findIndex(u => u.email === email && u.senha === senhaHash);
