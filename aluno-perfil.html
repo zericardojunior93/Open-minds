@@ -250,6 +250,7 @@
                     <div class="profile-card">
                         <div class="profile-head">
                             <img class="profile-avatar-preview" id="profile-avatar-preview" alt="Foto do perfil">
+                            <button type="button" id="remove-photo-btn" style="margin-left:10px;">Remover foto</button>
                             <div>
                                 <h1>Meu perfil</h1>
                                 <p>Atualize como seu nome e foto aparecem dentro da plataforma.</p>
@@ -312,10 +313,16 @@
                     avatarPreview.src = src;
                     document.getElementById('platform-user-avatar').src = src;
                 } else {
-                    avatarPreview.removeAttribute('src');
-                    document.getElementById('platform-user-avatar').removeAttribute('src');
+                    avatarPreview.src = 'img/default-profile.png';
+                    document.getElementById('platform-user-avatar').src = 'img/default-profile.png';
                 }
             };
+            // Botão para remover foto
+            document.getElementById('remove-photo-btn').addEventListener('click', () => {
+                photoUrlInput.value = '';
+                setPreview('');
+                window.auth.atualizarPerfil({ foto: null });
+            });
 
             nameInput.value = user.nome || '';
             emailInput.value = user.email || '';

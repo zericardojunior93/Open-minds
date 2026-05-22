@@ -5,21 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButtons = document.querySelectorAll('[data-platform-logout], #platform-logout-btn');
 
     if (user) {
+        // Nome especial para Conta de Desenvolvedor
+        let nomeExibir = user.nome;
+        if (user.email === 'zericardojunior93@gmail.com') {
+            nomeExibir = 'Conta de Desenvolvedor';
+        }
         nameTargets.forEach((target) => {
-            target.textContent = user.nome || 'Aluno Open Minds';
+            target.textContent = nomeExibir || 'Aluno Open Minds';
         });
 
         avatarTargets.forEach((target) => {
             if (target.tagName === 'IMG') {
                 if (user.foto) {
                     target.src = user.foto;
-                    target.alt = user.nome || 'Foto do perfil';
+                    target.alt = nomeExibir || 'Foto do perfil';
                 } else {
-                    target.removeAttribute('src');
+                    target.src = 'img/default-profile.png';
                     target.alt = 'Foto do perfil';
                 }
             } else {
-                target.textContent = (user.nome || user.email || 'Aluno').trim().charAt(0).toUpperCase();
+                target.textContent = (nomeExibir || user.email || 'Aluno').trim().charAt(0).toUpperCase();
             }
         });
     }
