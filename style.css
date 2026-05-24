@@ -2593,17 +2593,52 @@ header + main .hero-carreiras {
     75% { transform: translateX(5px); }
 }
 
-/* Respiro global para mobile */
+/* Sistema mobile global */
 @media (max-width: 768px) {
+    :root {
+        --mobile-gutter: clamp(24px, 6.5vw, 38px);
+        --mobile-section-y: clamp(56px, 14vw, 86px);
+        --mobile-card-pad: clamp(20px, 5.5vw, 26px);
+    }
+
     html,
     body {
         overflow-x: hidden;
     }
 
+    img,
+    video,
+    iframe {
+        max-width: 100%;
+    }
+
     .container,
     .plans-page .container {
-        padding-left: clamp(24px, 6vw, 34px);
-        padding-right: clamp(24px, 6vw, 34px);
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
+    }
+
+    h1,
+    h2,
+    .full-post-title,
+    .paths-title,
+    .evolution-title,
+    .plans-header h1,
+    .checkout-intro h1,
+    .student-copy h1,
+    .student-blog-head h1,
+    .subscription-hero-card h1,
+    .lesson-media h1 {
+        max-width: 100%;
+        overflow-wrap: normal;
+        text-wrap: balance;
+    }
+
+    h2 {
+        font-size: clamp(1.65rem, 7vw, 2.1rem) !important;
+        line-height: 1.18;
+        margin-top: var(--mobile-section-y);
+        margin-bottom: 28px;
     }
 
     header .header-container {
@@ -2623,8 +2658,8 @@ header + main .hero-carreiras {
 
     .hero h1 {
         width: 100%;
-        max-width: 12ch;
-        font-size: clamp(2.45rem, 11.5vw, 3rem);
+        max-width: 11ch;
+        font-size: clamp(2.35rem, 10vw, 3rem);
         line-height: 1.14;
         margin-left: auto;
         margin-right: auto;
@@ -2639,13 +2674,50 @@ header + main .hero-carreiras {
 
     .hero-carreiras,
     .auth-section {
-        padding-left: clamp(24px, 6vw, 34px);
-        padding-right: clamp(24px, 6vw, 34px);
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
+    }
+
+    .tech-selection,
+    .ia-nexi,
+    .main-benefits,
+    .trilhas-formativas,
+    .pricing,
+    .career-grid-section,
+    .paths-section,
+    .evolution-section,
+    .cta-final-section,
+    .courses-section,
+    .blog-section,
+    .plans-page,
+    .checkout-page,
+    .subscriptions-section {
+        padding-top: var(--mobile-section-y) !important;
+        padding-bottom: var(--mobile-section-y) !important;
+    }
+
+    .tech-selection,
+    .benefits-cards,
+    .main-benefits-grid,
+    .trilhas-grid,
+    .pricing-grid,
+    .career-grid,
+    .paths-grid,
+    .courses-grid,
+    .plans-grid,
+    .plans-showcase,
+    .checkout-hero,
+    .checkout-layout,
+    .subscription-hero,
+    .subscription-details-grid,
+    .lesson-shell,
+    .student-shell {
+        gap: 22px !important;
     }
 
     .full-post-container {
-        padding-left: clamp(24px, 6vw, 34px) !important;
-        padding-right: clamp(24px, 6vw, 34px) !important;
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
     }
 
     .blog-posts-container {
@@ -2654,39 +2726,18 @@ header + main .hero-carreiras {
     }
 
     .platform-topbar {
-        padding-left: clamp(24px, 6vw, 34px) !important;
-        padding-right: clamp(24px, 6vw, 34px) !important;
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
     }
 
     .platform-sidebar {
-        padding-left: clamp(24px, 6vw, 34px) !important;
-        padding-right: clamp(24px, 6vw, 34px) !important;
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
     }
 
     .platform-content {
-        padding-left: clamp(24px, 6vw, 34px) !important;
-        padding-right: clamp(24px, 6vw, 34px) !important;
-    }
-
-    .blog-card-header,
-    .blog-card-body,
-    .blog-card-footer {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container,
-    .plans-page .container,
-    .hero-carreiras,
-    .auth-section,
-    .full-post-container,
-    .platform-topbar,
-    .platform-sidebar,
-    .platform-content {
-        padding-left: 24px !important;
-        padding-right: 24px !important;
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
     }
 
     .auth-card,
@@ -2704,9 +2755,69 @@ header + main .hero-carreiras {
     .subscription-hero-card,
     .subscription-panel,
     .profile-card,
-    .lesson-card {
-        padding-left: 22px;
-        padding-right: 22px;
+    .lesson-card,
+    .student-banner,
+    .student-empty,
+    .payment-panel,
+    .summary-plan {
+        padding-left: var(--mobile-card-pad) !important;
+        padding-right: var(--mobile-card-pad) !important;
+    }
+
+    .blog-card-header,
+    .blog-card-body,
+    .blog-card-footer {
+        padding-left: var(--mobile-card-pad) !important;
+        padding-right: var(--mobile-card-pad) !important;
+    }
+
+    .full-post-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        font-size: 1rem !important;
+        line-height: 1.75;
+    }
+
+    .full-post-content h2 {
+        padding-left: 16px;
+        margin-left: 0 !important;
+    }
+
+    .checkout-intro h1,
+    .plans-header h1,
+    .full-post-title,
+    .student-copy h1,
+    .student-blog-head h1,
+    .subscription-hero-card h1,
+    .lesson-media h1 {
+        font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
+        line-height: 1.14 !important;
+    }
+
+    .paths-title,
+    .evolution-title {
+        font-size: clamp(2rem, 9vw, 2.6rem) !important;
+        margin-bottom: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --mobile-gutter: 26px;
+        --mobile-section-y: 52px;
+        --mobile-card-pad: 20px;
+    }
+
+    .container,
+    .plans-page .container,
+    .hero-carreiras,
+    .auth-section,
+    .full-post-container,
+    .platform-topbar,
+    .platform-sidebar,
+    .platform-content {
+        padding-left: var(--mobile-gutter) !important;
+        padding-right: var(--mobile-gutter) !important;
     }
 
     header .header-container {
@@ -2725,7 +2836,38 @@ header + main .hero-carreiras {
 
     .hero h1 {
         max-width: 11ch;
-        font-size: clamp(2.25rem, 10.5vw, 2.65rem);
+        font-size: clamp(2.1rem, 9.5vw, 2.45rem);
+    }
+
+    .hero p,
+    .section-description,
+    .plans-header p,
+    .checkout-intro p,
+    .student-blog-head p {
+        font-size: 0.96rem !important;
+        line-height: 1.65 !important;
+    }
+}
+
+@media (max-width: 380px) {
+    :root {
+        --mobile-gutter: 24px;
+        --mobile-card-pad: 18px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .btn-ciano,
+    .btn-outline,
+    .btn-load-more,
+    .plan-btn,
+    .summary-cta,
+    .ghost-btn {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
     }
 }
 
