@@ -622,8 +622,33 @@ nav ul li a.active::after {
 .practice ul li {
     margin-bottom: 15px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.practice-check {
+    flex: 0 0 auto;
+    color: var(--texto);
+    line-height: 1.45;
+}
+
+.practice ul li div {
+    min-width: 0;
+}
+
+.practice ul li strong,
+.practice ul li div span {
+    display: block;
+}
+
+.practice ul li strong {
+    margin-bottom: 6px;
+    line-height: 1.35;
+}
+
+.practice ul li div span {
+    color: var(--texto-secundario);
+    line-height: 1.65;
 }
 
 .practice ul li img {
@@ -2778,15 +2803,36 @@ header + main .hero-carreiras {
         object-fit: cover;
     }
 
-    .practice ul li,
     .full-plan ul li {
         display: block;
         line-height: 1.65;
     }
 
-    .practice ul li strong,
     .full-plan ul li strong {
         display: inline;
+    }
+
+    .practice ul li {
+        display: flex !important;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 24px;
+        text-align: left;
+    }
+
+    .practice-check {
+        padding-top: 2px;
+    }
+
+    .practice ul li strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+    }
+
+    .practice ul li div span {
+        display: block;
+        font-size: 0.98rem;
     }
 
     .hashtags {
