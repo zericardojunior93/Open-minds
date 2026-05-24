@@ -2799,6 +2799,69 @@ header + main .hero-carreiras {
         font-size: clamp(2rem, 9vw, 2.6rem) !important;
         margin-bottom: 36px;
     }
+
+    .main-benefits {
+        position: relative;
+    }
+
+    .main-benefits-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: var(--mobile-gutter);
+        -webkit-overflow-scrolling: touch;
+        margin-left: calc(var(--mobile-gutter) * -1);
+        margin-right: calc(var(--mobile-gutter) * -1);
+        padding-left: var(--mobile-gutter);
+        padding-right: calc(var(--mobile-gutter) + 64px);
+        padding-bottom: 14px;
+        scrollbar-width: none;
+    }
+
+    .main-benefits-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-benefit-card {
+        flex: 0 0 min(78vw, 320px);
+        scroll-snap-align: start;
+        min-height: 286px;
+    }
+
+    .main-benefits::before {
+        content: "";
+        position: absolute;
+        top: 120px;
+        right: 0;
+        bottom: 14px;
+        width: 84px;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--fundo) 72%);
+    }
+
+    .main-benefits::after {
+        content: ">";
+        position: absolute;
+        top: 50%;
+        right: var(--mobile-gutter);
+        z-index: 3;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 242, 254, 0.35);
+        background: rgba(13, 17, 23, 0.92);
+        color: var(--ciano);
+        font-size: 1.6rem;
+        font-weight: 900;
+        line-height: 1;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.36), 0 0 18px rgba(0, 242, 254, 0.12);
+        pointer-events: none;
+    }
 }
 
 @media (max-width: 480px) {
