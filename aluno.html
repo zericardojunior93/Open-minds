@@ -369,7 +369,7 @@
         </div>
     </header>
 
-    <main class="platform-page">
+    <main class="platform-page sidebar-collapsed">
         <div class="platform-topbar">
             <a href="aluno.html" class="platform-brand">
                 <img src="img/logo.png" alt="Open Minds Logo">
@@ -393,7 +393,7 @@
 
         <div class="platform-layout">
             <aside class="platform-sidebar">
-                <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Recolher painel" aria-expanded="true">
+                <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Expandir painel" aria-expanded="false">
                     <span class="sidebar-toggle-icon" aria-hidden="true">
                         <span></span>
                         <span></span>
@@ -557,10 +557,10 @@
             const sidebarToggle = document.getElementById('sidebar-toggle');
             const savedSidebarState = localStorage.getItem('openMindsSidebarCollapsed');
 
-            if (platformPage && sidebarToggle && savedSidebarState === 'true') {
-                platformPage.classList.add('sidebar-collapsed');
-                sidebarToggle.setAttribute('aria-expanded', 'false');
-                sidebarToggle.setAttribute('aria-label', 'Expandir painel');
+            if (platformPage && sidebarToggle && savedSidebarState === 'false') {
+                platformPage.classList.remove('sidebar-collapsed');
+                sidebarToggle.setAttribute('aria-expanded', 'true');
+                sidebarToggle.setAttribute('aria-label', 'Recolher painel');
             }
 
             sidebarToggle?.addEventListener('click', () => {
