@@ -2593,3 +2593,89 @@ header + main .hero-carreiras {
     75% { transform: translateX(5px); }
 }
 
+/* Respiro global para mobile */
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .container,
+    .plans-page .container {
+        padding-left: clamp(24px, 6vw, 34px);
+        padding-right: clamp(24px, 6vw, 34px);
+    }
+
+    .hero-carreiras,
+    .auth-section {
+        padding-left: clamp(24px, 6vw, 34px);
+        padding-right: clamp(24px, 6vw, 34px);
+    }
+
+    .full-post-container {
+        padding-left: clamp(24px, 6vw, 34px) !important;
+        padding-right: clamp(24px, 6vw, 34px) !important;
+    }
+
+    .blog-posts-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .platform-topbar {
+        padding-left: clamp(24px, 6vw, 34px) !important;
+        padding-right: clamp(24px, 6vw, 34px) !important;
+    }
+
+    .platform-sidebar {
+        padding-left: clamp(24px, 6vw, 34px) !important;
+        padding-right: clamp(24px, 6vw, 34px) !important;
+    }
+
+    .platform-content {
+        padding-left: clamp(24px, 6vw, 34px) !important;
+        padding-right: clamp(24px, 6vw, 34px) !important;
+    }
+
+    .blog-card-header,
+    .blog-card-body,
+    .blog-card-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .plans-page .container,
+    .hero-carreiras,
+    .auth-section,
+    .full-post-container,
+    .platform-topbar,
+    .platform-sidebar,
+    .platform-content {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    .auth-card,
+    .checkout-intro,
+    .checkout-security,
+    .checkout-card,
+    .plans-showcase .pricing-card,
+    .plan-card,
+    .pricing-card,
+    .course-content,
+    .main-benefit-card,
+    .trilha-card,
+    .benefit-card,
+    .career-card,
+    .subscription-hero-card,
+    .subscription-panel,
+    .profile-card,
+    .lesson-card {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+}
+
