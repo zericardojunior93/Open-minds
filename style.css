@@ -7,6 +7,7 @@
     --ciano: #00f2fe; /* Cor de destaque neon */
     --borda-ciano: rgba(0, 242, 254, 0.3);
     --fonte-principal: 'Inter', system-ui, -apple-system, sans-serif;
+    --page-gutter: clamp(32px, 5vw, 72px);
 }
 
 * {
@@ -30,9 +31,16 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto; /* Centraliza horizontalmente */
-    padding: 0 20px; /* Espaçamento lateral (20px em cada lado) */
+    padding: 0 var(--page-gutter); /* Espaçamento lateral */
     width: 100%; /* Ocupa 100% da largura disponível até max-width */
     box-sizing: border-box;
+}
+
+.hero-carreiras,
+.auth-section,
+.full-post-container {
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
 }
 
 
@@ -2622,9 +2630,36 @@ header + main .hero-carreiras {
     75% { transform: translateX(5px); }
 }
 
+/* Respiro global para desktop/tablet */
+@media (min-width: 901px) {
+    .container,
+    .plans-page .container {
+        padding-left: var(--page-gutter) !important;
+        padding-right: var(--page-gutter) !important;
+    }
+
+    .hero-carreiras,
+    .auth-section,
+    .full-post-container {
+        padding-left: var(--page-gutter) !important;
+        padding-right: var(--page-gutter) !important;
+    }
+
+    .platform-topbar {
+        padding-left: var(--page-gutter) !important;
+        padding-right: var(--page-gutter) !important;
+    }
+
+    .platform-content {
+        padding-left: var(--page-gutter) !important;
+        padding-right: var(--page-gutter) !important;
+    }
+}
+
 /* Sistema mobile global */
 @media (max-width: 900px) {
     :root {
+        --page-gutter: var(--mobile-gutter);
         --mobile-gutter: clamp(24px, 6.5vw, 38px);
         --mobile-section-y: clamp(56px, 14vw, 86px);
         --mobile-card-pad: clamp(20px, 5.5vw, 26px);
