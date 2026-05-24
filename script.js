@@ -108,4 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 6. Indicador do carrossel mobile de beneficios
+    const benefitsSection = document.querySelector('.main-benefits');
+    const benefitsCarousel = document.querySelector('.main-benefits-grid');
+
+    if (benefitsSection && benefitsCarousel) {
+        const updateBenefitsHint = () => {
+            const maxScroll = benefitsCarousel.scrollWidth - benefitsCarousel.clientWidth;
+            const hasOverflow = maxScroll > 4;
+            const hasContentToRight = benefitsCarousel.scrollLeft < maxScroll - 4;
+
+            benefitsSection.classList.toggle('has-more', hasOverflow);
+            benefitsSection.classList.toggle('at-end', !hasOverflow || !hasContentToRight);
+        };
+
+        benefitsCarousel.addEventListener('scroll', updateBenefitsHint, { passive: true });
+        window.addEventListener('resize', updateBenefitsHint);
+        window.addEventListener('load', updateBenefitsHint);
+        updateBenefitsHint();
+    }
+
 });

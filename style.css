@@ -391,6 +391,10 @@ nav ul li a.active::after {
     font-size: 0.9rem;
 }
 
+.carousel-more-hint {
+    display: none;
+}
+
 /* 7. Trilhas Formativas (Baseado na image_5.png) */
 /* ===== GRID DE TRILHAS FORMATIVAS ===== */
 /* 3 colunas com gap de 24px para espaçamento consistente */
@@ -2594,7 +2598,7 @@ header + main .hero-carreiras {
 }
 
 /* Sistema mobile global */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     :root {
         --mobile-gutter: clamp(24px, 6.5vw, 38px);
         --mobile-section-y: clamp(56px, 14vw, 86px);
@@ -2856,7 +2860,10 @@ header + main .hero-carreiras {
     }
 
     .main-benefits::after {
-        content: ">>";
+        display: none;
+    }
+
+    .carousel-more-hint {
         position: absolute;
         top: calc(132px + 34%);
         right: calc(var(--mobile-gutter) - 2px);
@@ -2873,6 +2880,14 @@ header + main .hero-carreiras {
         text-shadow: 0 0 16px rgba(255, 255, 255, 0.22);
         animation: mobileCarouselHint 1.1s ease-in-out infinite;
         pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .main-benefits.has-more:not(.at-end) .carousel-more-hint {
+        opacity: 1;
+        visibility: visible;
     }
 }
 
