@@ -2616,6 +2616,23 @@ header + main .hero-carreiras {
         max-width: 100%;
     }
 
+    *,
+    *::before,
+    *::after {
+        min-width: 0;
+    }
+
+    p,
+    li,
+    a,
+    span,
+    strong,
+    h1,
+    h2,
+    h3 {
+        overflow-wrap: break-word;
+    }
+
     .container,
     .plans-page .container {
         padding-left: var(--mobile-gutter) !important;
@@ -2634,7 +2651,7 @@ header + main .hero-carreiras {
     .subscription-hero-card h1,
     .lesson-media h1 {
         max-width: 100%;
-        overflow-wrap: normal;
+        overflow-wrap: break-word;
         text-wrap: balance;
     }
 
@@ -2717,6 +2734,93 @@ header + main .hero-carreiras {
     .lesson-shell,
     .student-shell {
         gap: 22px !important;
+    }
+
+    .tech-selection,
+    .ia-nexi,
+    .trilhas-grid,
+    .pricing-grid,
+    .build-future,
+    .practice,
+    .full-plan,
+    .news-grid,
+    .news-small-grid,
+    .newsletter-form,
+    .footer-links,
+    .checkout-hero,
+    .checkout-layout,
+    .plans-showcase,
+    .plans-grid,
+    .courses-grid,
+    .career-grid,
+    .paths-grid,
+    .path-item,
+    .evolution-grid,
+    .evolution-content,
+    .subscription-hero,
+    .subscription-details-grid,
+    .lesson-shell,
+    .student-shell {
+        grid-template-columns: 1fr !important;
+    }
+
+    .build-future-img {
+        min-width: 0;
+        height: auto;
+        order: 2;
+    }
+
+    .build-future-img img,
+    .practice .practice-img {
+        width: 100%;
+        height: auto;
+        max-height: 360px;
+        object-fit: cover;
+    }
+
+    .practice ul li,
+    .full-plan ul li {
+        display: block;
+        line-height: 1.65;
+    }
+
+    .practice ul li strong,
+    .full-plan ul li strong {
+        display: inline;
+    }
+
+    .hashtags {
+        margin-top: 28px;
+        gap: 10px 14px;
+    }
+
+    .hashtags span {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .trilha-card,
+    .pricing-card,
+    .course-card,
+    .news-card-large,
+    .news-card-small,
+    .career-card,
+    .path-item,
+    .plan-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .path-info p {
+        max-width: none;
+    }
+
+    .path-badges {
+        justify-content: flex-start;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 
     .full-post-container {
@@ -2947,6 +3051,16 @@ header + main .hero-carreiras {
     .student-blog-head p {
         font-size: 0.96rem !important;
         line-height: 1.65 !important;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .badge {
+        width: 74px;
+        height: 74px;
+        font-size: 0.68rem;
     }
 }
 
