@@ -73,12 +73,71 @@
             display: grid;
             grid-template-columns: 280px minmax(0, 1fr);
             min-height: calc(100vh - 79px);
+            transition: grid-template-columns 0.24s ease;
         }
 
         .platform-sidebar {
             border-right: 1px solid rgba(255, 255, 255, 0.08);
             padding: 26px 18px;
             background: rgba(7, 11, 16, 0.82);
+            overflow: hidden;
+            transition: padding 0.24s ease, background 0.24s ease;
+        }
+
+        .sidebar-toggle {
+            width: 52px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(0, 242, 254, 0.18);
+            border-radius: 14px;
+            background: rgba(0, 242, 254, 0.06);
+            cursor: pointer;
+            margin: 0 0 22px;
+            transition: 0.2s ease;
+        }
+
+        .sidebar-toggle:hover {
+            border-color: rgba(0, 242, 254, 0.42);
+            background: rgba(0, 242, 254, 0.1);
+        }
+
+        .sidebar-toggle-icon {
+            width: 26px;
+            display: grid;
+            gap: 5px;
+        }
+
+        .sidebar-toggle-icon span {
+            display: block;
+            height: 4px;
+            border-radius: 999px;
+            background: #536072;
+        }
+
+        .platform-side-nav {
+            transition: opacity 0.18s ease, transform 0.22s ease;
+        }
+
+        .platform-page.sidebar-collapsed .platform-layout {
+            grid-template-columns: 88px minmax(0, 1fr);
+        }
+
+        .platform-page.sidebar-collapsed .platform-sidebar {
+            padding-left: 18px;
+            padding-right: 18px;
+            background: rgba(7, 11, 16, 0.72);
+        }
+
+        .platform-page.sidebar-collapsed .sidebar-toggle {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .platform-page.sidebar-collapsed .platform-side-nav {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-12px);
         }
 
         .platform-side-group {
@@ -117,8 +176,8 @@
         .student-hero {
             padding: 86px 0 42px;
             background:
-                radial-gradient(circle at top left, rgba(0, 242, 254, 0.14), transparent 30%),
-                linear-gradient(180deg, rgba(13, 17, 23, 0.2), rgba(0, 0, 0, 0));
+                radial-gradient(ellipse at 18% 0%, rgba(0, 242, 254, 0.16) 0%, rgba(0, 242, 254, 0.08) 28%, rgba(0, 242, 254, 0) 68%),
+                linear-gradient(180deg, rgba(13, 17, 23, 0.18), rgba(3, 7, 12, 0));
         }
 
         .student-shell {
@@ -254,9 +313,21 @@
                 grid-template-columns: 1fr;
             }
 
+            .platform-page.sidebar-collapsed .platform-layout {
+                grid-template-columns: 1fr;
+            }
+
             .platform-sidebar {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .platform-page.sidebar-collapsed .platform-sidebar {
+                padding: 18px 24px;
+            }
+
+            .platform-page.sidebar-collapsed .platform-side-nav {
+                display: none;
             }
 
             .student-shell {
@@ -322,16 +393,25 @@
 
         <div class="platform-layout">
             <aside class="platform-sidebar">
-                <div class="platform-side-group">
-                    <small>Plataforma</small>
-                    <a href="aluno.html" class="platform-link active">Biblioteca de cursos</a>
-                    <a href="minhas_assinaturas.html" class="platform-link">Minha assinatura</a>
-                    <a href="aluno-perfil.html" class="platform-link">Meu perfil</a>
-                </div>
-                <div class="platform-side-group">
-                    <small>Conexoes</small>
-                    <a href="aluno-blog.html" class="platform-link">Blog Open Minds</a>
-                    <a href="cursos.html" class="platform-link">Catalogo publico</a>
+                <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Recolher painel" aria-expanded="true">
+                    <span class="sidebar-toggle-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <div class="platform-side-nav" id="platform-side-nav">
+                    <div class="platform-side-group">
+                        <small>Plataforma</small>
+                        <a href="aluno.html" class="platform-link active">Biblioteca de cursos</a>
+                        <a href="minhas_assinaturas.html" class="platform-link">Minha assinatura</a>
+                        <a href="aluno-perfil.html" class="platform-link">Meu perfil</a>
+                    </div>
+                    <div class="platform-side-group">
+                        <small>Conexoes</small>
+                        <a href="aluno-blog.html" class="platform-link">Blog Open Minds</a>
+                        <a href="cursos.html" class="platform-link">Catalogo publico</a>
+                    </div>
                 </div>
             </aside>
 
@@ -473,6 +553,23 @@
     <script src="nexi-widget-v2.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const platformPage = document.querySelector('.platform-page');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const savedSidebarState = localStorage.getItem('openMindsSidebarCollapsed');
+
+            if (platformPage && sidebarToggle && savedSidebarState === 'true') {
+                platformPage.classList.add('sidebar-collapsed');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
+                sidebarToggle.setAttribute('aria-label', 'Expandir painel');
+            }
+
+            sidebarToggle?.addEventListener('click', () => {
+                const isCollapsed = platformPage.classList.toggle('sidebar-collapsed');
+                sidebarToggle.setAttribute('aria-expanded', String(!isCollapsed));
+                sidebarToggle.setAttribute('aria-label', isCollapsed ? 'Expandir painel' : 'Recolher painel');
+                localStorage.setItem('openMindsSidebarCollapsed', String(isCollapsed));
+            });
+
             const user = window.auth?.getUsuario?.();
             if (!user) {
                 window.location.href = 'login.html?redirect=aluno';
