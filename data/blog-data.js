@@ -44,7 +44,7 @@ const blogPosts = [
                 <li><strong>Estimula a competição e colaboração:</strong> Rankings e desafios em grupo criam um ambiente social que incentiva o aluno a se superar e aprender com os outros.</li>
             </ol>
 
-            <img src="img/Imagens blog/Transforme Seu Aprendizado/d04c71_863e73530dde4ae6a18a96651e9aac3e~mv2.png" alt="Pessoa interagindo com aplicativo educativo gamificado em tablet" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Transforme Seu Aprendizado/d04c71_863e73530dde4ae6a18a96651e9aac3e~mv2.png" alt="Pessoa interagindo com aplicativo educativo gamificado em tablet" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Exemplos Práticos de Gamificação no Aprendizado</h2>
             <h3>Duolingo</h3>
@@ -65,7 +65,7 @@ const blogPosts = [
             </ul>
             <p>Essas práticas ajudam a transformar o estudo em uma atividade mais dinâmica e eficiente.</p>
 
-            <img src="img/Imagens blog/Transforme Seu Aprendizado/d04c71_2430ab1b5fb34f89bbf4526b3fb34d12~mv2.png" alt="Ambiente de estudo com livros e dispositivos digitais organizados" style="width: 100%; border-radius: 8px; margin-top: 2rem;">
+            <img src="../assets/img/Imagens blog/Transforme Seu Aprendizado/d04c71_2430ab1b5fb34f89bbf4526b3fb34d12~mv2.png" alt="Ambiente de estudo com livros e dispositivos digitais organizados" style="width: 100%; border-radius: 8px; margin-top: 2rem;">
 
             <h2>Superando as Barreiras das Plataformas Tradicionais</h2>
             <p>A gamificação não elimina completamente as plataformas tradicionais, mas as complementa e melhora. Para superar suas limitações, é importante:</p>
@@ -78,7 +78,7 @@ const blogPosts = [
             <p>Ao fazer isso, você transforma seu aprendizado em uma experiência mais produtiva e prazerosa.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/Transforme Seu Aprendizado/11062b_e36b37d13b534047889eb4b95c535462~mv2.webp",
+        bannerImagem: "../assets/img/Imagens blog/Transforme Seu Aprendizado/11062b_e36b37d13b534047889eb4b95c535462~mv2.webp",
         stats: { views: "4 visualizações", comentarios: "1 comentário" }
     },
     {
@@ -119,7 +119,7 @@ const blogPosts = [
                 <li>Utilize tapetes ou cortinas simples para dar aconchego e delimitar áreas.</li>
             </ul>
 
-            <img src="img/Imagens blog/Setup de Milhões/2.png" alt="Planta em vaso decorativo sobre mesa de escritório minimalista" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Setup de Milhões/2.png" alt="Planta em vaso decorativo sobre mesa de escritório minimalista" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Tecnologia e Equipamentos: Priorize o Essencial e Busque Alternativas</h2>
             <p>Equipamentos tecnológicos são importantes, mas não precisam ser os mais caros para atender bem. Para montar um setup eficiente:</p>
@@ -140,13 +140,13 @@ const blogPosts = [
                 <li>Avalie periodicamente o que realmente usa e descarte o que está obsoleto.</li>
             </ul>
 
-            <img src="img/Imagens blog/Setup de Milhões/3.png" alt="Escritório compacto com organização eficiente e decoração simples" style="width: 100%; border-radius: 8px; margin-top: 2rem;">
+            <img src="../assets/img/Imagens blog/Setup de Milhões/3.png" alt="Escritório compacto com organização eficiente e decoração simples" style="width: 100%; border-radius: 8px; margin-top: 2rem;">
 
             <h2>Considerações Finais</h2>
             <p>Um ambiente bem cuidado dura mais e mantém a aparência de um setup de alto padrão. O segredo não é o preço, mas o cuidado e a inteligência na escolha e manutenção do seu espaço de trabalho.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/Setup de Milhões/1.png",
+        bannerImagem: "../assets/img/Imagens blog/Setup de Milhões/1.png",
         stats: { views: "142 visualizações", comentarios: "12 comentários" }
     },
     {
@@ -175,7 +175,7 @@ const blogPosts = [
             <p>Imagine um iniciante que tenta criar um programa simples para somar dois números. Ele escreve o código, mas recebe uma mensagem de erro que não entende. Sem saber como buscar ajuda ou interpretar o problema, ele tenta várias soluções aleatórias, mas nada funciona. A sensação de incapacidade cresce, e a vontade de continuar diminui.</p>
             <p>Esse cenário é comum e pode ser evitado com algumas estratégias simples.</p>
 
-            <img src="img/Imagens blog/O erro comum/2.png" alt="Estudante enfrentando dificuldades ao aprender programação" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/O erro comum/2.png" alt="Estudante enfrentando dificuldades ao aprender programação" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Estratégias para Evitar Esse Erro e Continuar Aprendendo</h2>
 
@@ -216,7 +216,7 @@ print("A soma é:", soma)</code></pre>
             <p>O maior erro de um iniciante não é errar o código, mas desistir antes de entender o processo. Programação é uma habilidade construída com tempo, prática e paciência. Ajuste suas expectativas, celebre cada pequena conquista e use os recursos disponíveis. Com consistência, você vai superar os desafios e se tornar um programador cada vez melhor.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/O erro comum/1.png",
+        bannerImagem: "../assets/img/Imagens blog/O erro comum/1.png",
         stats: { views: "0 visualizações", comentarios: "0 comentários" }
     },
     {
@@ -238,7 +238,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Essa ferramenta é especialmente útil para tarefas repetitivas e para quem está aprendendo novas linguagens, pois oferece exemplos práticos e imediatos.</p>
 
-            <img src="img/Imagens blog/Maximize sua Produtividade/1. github copilot.webp" alt="GitHub Copilot assistente de código com IA" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Maximize sua Produtividade/1. github copilot.webp" alt="GitHub Copilot assistente de código com IA" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>2. Tabnine: Autocompletar Inteligente para Diversas Linguagens</h2>
             <p>Tabnine é um assistente de código que funciona com múltiplas linguagens e editores. Ele usa IA para prever o que você vai digitar, completando automaticamente linhas e blocos.</p>
@@ -249,7 +249,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Tabnine é uma ótima opção para quem quer uma ferramenta leve, que se integra facilmente ao fluxo de trabalho.</p>
 
-            <img src="img/Imagens blog/Maximize sua Produtividade/02. tabnine.png" alt="Tabnine autocompletar inteligente para desenvolvedores" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Maximize sua Produtividade/02. tabnine.png" alt="Tabnine autocompletar inteligente para desenvolvedores" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>3. DeepCode: Revisão Automática de Código com IA</h2>
             <p>DeepCode oferece análise automática de código usando IA para identificar bugs, vulnerabilidades e sugestões de melhoria.</p>
@@ -260,7 +260,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Essa ferramenta é essencial para manter a qualidade do código sem sacrificar tempo.</p>
 
-            <img src="img/Imagens blog/Maximize sua Produtividade/03. deepcode.png" alt="DeepCode revisão automática de código com IA" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Maximize sua Produtividade/03. deepcode.png" alt="DeepCode revisão automática de código com IA" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>4. CodeWhisperer da AWS: Assistente de Codificação para Projetos em Nuvem</h2>
             <p>CodeWhisperer é uma ferramenta da Amazon Web Services que sugere código para aplicações em nuvem, facilitando o desenvolvimento de soluções escaláveis.</p>
@@ -271,7 +271,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Se você trabalha com cloud computing, essa ferramenta pode ser um grande aliado para ganhar tempo e evitar erros.</p>
 
-            <img src="img/Imagens blog/Maximize sua Produtividade/4. CodeWhisperer.jpg" alt="CodeWhisperer da AWS para projetos em nuvem" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Maximize sua Produtividade/4. CodeWhisperer.jpg" alt="CodeWhisperer da AWS para projetos em nuvem" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>5. Snyk: Segurança Automatizada para Código e Dependências</h2>
             <p>Snyk é uma plataforma que usa IA para identificar vulnerabilidades em código e nas bibliotecas que seu projeto utiliza.</p>
@@ -282,7 +282,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Manter a segurança em dia sem perder produtividade é possível com essa ferramenta.</p>
 
-            <img src="img/Imagens blog/Maximize sua Produtividade/5. Snyk Segurança.webp" alt="Snyk segurança automatizada para código e dependências" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Maximize sua Produtividade/5. Snyk Segurança.webp" alt="Snyk segurança automatizada para código e dependências" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Como Integrar Essas Ferramentas no Seu Dia a Dia</h2>
             <p>Para aproveitar ao máximo essas ferramentas, é importante integrá-las ao seu fluxo de trabalho de forma natural:</p>
@@ -298,7 +298,7 @@ print("A soma é:", soma)</code></pre>
             <p>O futuro do desenvolvimento está na colaboração entre humanos e máquinas. Aproveite essa parceria para criar códigos melhores, mais seguros e com menos esforço.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/Maximize sua Produtividade/0. imagem principal.png",
+        bannerImagem: "../assets/img/Imagens blog/Maximize sua Produtividade/0. imagem principal.png",
         stats: { views: "1 visualização", comentarios: "0 comentário" }
     },
     {
@@ -368,7 +368,7 @@ print("A soma é:", soma)</code></pre>
                 <li>Mantenha a comunicação rápida e educada</li>
             </ul>
 
-            <img src="img/Imagens blog/Guia do iniciante/2.png" alt="Desenvolvedor trabalhando no laptop em busca de projetos freela" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Guia do iniciante/2.png" alt="Desenvolvedor trabalhando no laptop em busca de projetos freela" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Organize seu trabalho para garantir entregas de qualidade</h2>
             <p>Ter um processo claro ajuda a evitar atrasos e retrabalhos, o que é essencial para construir uma boa reputação.</p>
@@ -399,7 +399,7 @@ print("A soma é:", soma)</code></pre>
                 <li>Continue estudando novas tecnologias e práticas do mercado</li>
             </ul>
 
-            <img src="img/Imagens blog/Guia do iniciante/3.png" alt="Mesa organizada para estudo e trabalho com laptop e caderno" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/Guia do iniciante/3.png" alt="Mesa organizada para estudo e trabalho com laptop e caderno" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Próximos passos para sua carreira como freelancer</h2>
             <p>Depois de conquistar seu primeiro projeto, mantenha o ritmo:</p>
@@ -412,7 +412,7 @@ print("A soma é:", soma)</code></pre>
             <p>Com dedicação e organização, você pode transformar o trabalho freelancer em uma fonte estável de renda e aprendizado.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/Guia do iniciante/1.png",
+        bannerImagem: "../assets/img/Imagens blog/Guia do iniciante/1.png",
         stats: { views: "0 visualização", comentarios: "0 comentário" }
     },
     {
@@ -443,7 +443,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Organizações de setores como financeiro, saúde e governo estão entre as que mais contratam esses profissionais para evitar prejuízos financeiros e danos à reputação.</p>
 
-            <img src="img/Imagens blog/As 5 Profissões de Tecnologia/analista.png" alt="Analista de segurança da informação monitorando sistemas" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/As 5 Profissões de Tecnologia/analista.png" alt="Analista de segurança da informação monitorando sistemas" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>3. Cientista de Dados</h2>
             <p>A quantidade de dados gerados diariamente é enorme, e transformá-los em informações úteis é o papel do cientista de dados. Esse profissional utiliza estatística, programação e aprendizado de máquina para extrair insights que ajudam na tomada de decisão.</p>
@@ -454,7 +454,7 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Empresas de tecnologia, varejo e indústria utilizam cientistas de dados para melhorar produtos, otimizar processos e personalizar serviços.</p>
 
-            <img src="img/Imagens blog/As 5 Profissões de Tecnologia/cientista de dados.jpeg" alt="Cientista de dados analisando gráficos e informações" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/As 5 Profissões de Tecnologia/cientista de dados.jpeg" alt="Cientista de dados analisando gráficos e informações" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>4. Especialista em Computação em Nuvem</h2>
             <p>A computação em nuvem permite que empresas armazenem e processem dados de forma flexível e escalável. O especialista em nuvem gerencia essas infraestruturas, garantindo eficiência e segurança.</p>
@@ -474,14 +474,14 @@ print("A soma é:", soma)</code></pre>
             </ul>
             <p>Setores como saúde, finanças e manufatura investem pesado em IA para aumentar eficiência e inovação, criando muitas vagas para engenheiros especializados.</p>
 
-            <img src="img/Imagens blog/As 5 Profissões de Tecnologia/3.png" alt="Servidor com luzes indicadoras em data center" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
+            <img src="../assets/img/Imagens blog/As 5 Profissões de Tecnologia/3.png" alt="Servidor com luzes indicadoras em data center" style="width: 100%; border-radius: 8px; margin: 2rem 0;">
 
             <h2>Preparação para o Futuro</h2>
             <p>Para aproveitar as oportunidades dessas profissões, é fundamental investir em formação contínua. Cursos técnicos, graduação, especializações e certificações são caminhos que aumentam a empregabilidade. Além disso, desenvolver habilidades interpessoais, como comunicação e trabalho em equipe, faz diferença no mercado.</p>
             <p>Acompanhar tendências tecnológicas e participar de comunidades também ajuda a se manter atualizado e conectado com o mercado.</p>
         `,
         temImagem: true,
-        bannerImagem: "img/Imagens blog/As 5 Profissões de Tecnologia/1.png",
+        bannerImagem: "../assets/img/Imagens blog/As 5 Profissões de Tecnologia/1.png",
         stats: { views: "0 visualizações", comentarios: "0 comentários" }
     }
 ];

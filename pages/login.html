@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Minds | Entre na sua Conta</title>
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <style>
         /* Ajuste específico para a logo na página de login */
         .login-logo {
@@ -86,15 +86,15 @@
     <!-- Scripts de Dados e Lógica -->
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="local-auth-config.js"></script>
-    <script src="auth.js"></script>
+    <script src="../config/firebase-config.js"></script>
+    <script src="../config/local-auth-config.js"></script>
+    <script src="../scripts/auth.js"></script>
 
     <!-- Carregando React e Babel Standalone via CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="nexi-widget-v2.js"></script>
+    <script src="../scripts/nexi-widget-v2.js"></script>
 
     <!-- CÓDIGO REACT LOGIN (Escrito em JSX!) -->
     <script type="text/babel">
@@ -156,7 +156,7 @@
             return (
                 <div className="auth-card">
                     <a href="index.html" className="login-logo">
-                        <img src="img/logo.png" alt="Open Minds Logo" />
+                        <img src="../assets/img/logo.png" alt="Open Minds Logo" />
                         <span>Open Minds</span>
                     </a>
 

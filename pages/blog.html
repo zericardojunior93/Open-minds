@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Minds | Blog</title>
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 
     <header>
         <div class="container header-container">
             <a href="index.html" class="logo-container">
-                <img src="img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
+                <img src="../assets/img/logo.png" alt="Open Minds Logo"> <span>Open Minds</span>
             </a>
             <nav>
                 <ul>
@@ -48,16 +48,16 @@
         <div class="container footer-container">
             <div class="footer-top">
                 <a href="index.html" class="logo-container">
-                    <img src="img/logo.png" alt="Open Minds Logo Ciano">
+                    <img src="../assets/img/logo.png" alt="Open Minds Logo Ciano">
                     <p>Open Minds Educacional LTDA | CNPJ: 12.345.678/0001-90</p>
                 </a>
                 <div class="social-icons">
-                    <a href="#"><img src="img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
-                    <a href="#"><img src="img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
-                    <a href="#"><img src="img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
-                    <a href="#"><img src="img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
-                    <a href="#"><img src="img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
-                    <a href="#"><img src="img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/facebook-removebg-preview.png" alt="Facebook"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/twitter-removebg-preview.png" alt="Twitter"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/instagram-removebg-preview.png" alt="Instagram"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/whatsapp-removebg-preview.png" alt="WhatsApp"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/youtube-removebg-preview.png" alt="YouTube"></a>
+                    <a href="#"><img src="../assets/img/redes sociais logos/tiktok-removebg-preview.png" alt="TikTok"></a>
                 </div>
             </div>
             
@@ -121,9 +121,9 @@
     </footer>
 
     <!-- Scripts de Lógica -->
-    <script src="auth.js"></script>
-    <script src="header-auth.js"></script>
-    <script src="blog-data.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/header-auth.js"></script>
+    <script src="../data/blog-data.js"></script>
 
     <!-- Carregando React e Babel Standalone via CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -150,7 +150,7 @@
                     <div className="blog-card-header">
                         <div className="author-info">
                             <div className="author-avatar">
-                                {Number(post.id) <= 6 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                                {Number(post.id) <= 6 ? <img src="../assets/img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
                             </div>
                             <div class="author-details">
                                 <p class="author-name">{post.autor}</p>
@@ -187,7 +187,7 @@
         root.render(<BlogList />);
     </script>
 
-    <script src="script.js"></script>
-    <script src="nexi-widget-v2.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/nexi-widget-v2.js"></script>
 </body>
 </html>

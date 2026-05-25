@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Minds | Meu Perfil</title>
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <style>
         header,
         footer {
@@ -211,7 +211,7 @@
     <main class="platform-page">
         <div class="platform-topbar">
             <a href="aluno.html" class="platform-brand">
-                <img src="img/logo.png" alt="Open Minds Logo">
+                <img src="../assets/img/logo.png" alt="Open Minds Logo">
                 <div class="platform-brand-text">
                     <strong>Open Minds Platform</strong>
                     <span>Perfil do aluno</span>
@@ -291,8 +291,8 @@
         </div>
     </main>
 
-    <script src="auth.js"></script>
-    <script src="platform-auth.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/platform-auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const user = window.auth?.getUsuario?.();
@@ -307,14 +307,15 @@
             const photoFileInput = document.getElementById('profile-photo-file');
             const avatarPreview = document.getElementById('profile-avatar-preview');
             const message = document.getElementById('profile-message');
+            const defaultAvatar = '../assets/img/default-profile.png';
 
             const setPreview = (src) => {
                 if (src) {
                     avatarPreview.src = src;
                     document.getElementById('platform-user-avatar').src = src;
                 } else {
-                    avatarPreview.src = 'img/default-profile.png';
-                    document.getElementById('platform-user-avatar').src = 'img/default-profile.png';
+                    avatarPreview.src = defaultAvatar;
+                    document.getElementById('platform-user-avatar').src = defaultAvatar;
                 }
             };
             // Botão para remover foto
@@ -359,6 +360,6 @@
             });
         });
     </script>
-    <script src="nexi-widget-v2.js"></script>
+    <script src="../scripts/nexi-widget-v2.js"></script>
 </body>
 </html>

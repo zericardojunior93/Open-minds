@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Minds | Post do Aluno</title>
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <style>
         header,
         footer {
@@ -234,7 +234,7 @@
     <main class="platform-page">
         <div class="platform-topbar">
             <a href="aluno.html" class="platform-brand">
-                <img src="img/logo.png" alt="Open Minds Logo">
+                <img src="../assets/img/logo.png" alt="Open Minds Logo">
                 <div class="platform-brand-text">
                     <strong>Open Minds Platform</strong>
                     <span>Ambiente do aluno</span>
@@ -282,9 +282,9 @@
         </div>
     </main>
 
-    <script src="auth.js"></script>
-    <script src="platform-auth.js"></script>
-    <script src="blog-data.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/platform-auth.js"></script>
+    <script src="../data/blog-data.js"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -317,7 +317,7 @@
                     <div className="full-post-header">
                         <div className="author-info" style={{ marginBottom: '1.5rem' }}>
                             <div className="author-avatar">
-                                {Number(post.id) <= 6 ? <img src="img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
+                                {Number(post.id) <= 6 ? <img src="../assets/img/Imagens blog/Nerd.png" alt="Avatar" /> : "OM"}
                             </div>
                             <div className="author-details">
                                 <p className="author-name">{post.autor}</p>
@@ -345,6 +345,6 @@
         const root = ReactDOM.createRoot(document.getElementById('post-target'));
         root.render(<SinglePost />);
     </script>
-    <script src="nexi-widget-v2.js"></script>
+    <script src="../scripts/nexi-widget-v2.js"></script>
 </body>
 </html>

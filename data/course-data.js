@@ -2,7 +2,7 @@ window.courseData = [
     {
         id: "cloud-devops",
         title: "Arquitetura de Cloud & DevOps",
-        image: "img/cursos/cloud_devops.png",
+        image: "../assets/img/cursos/cloud_devops.png",
         area: "Cloud",
         level: "Intermediario",
         duration: "42h de trilha",
@@ -20,7 +20,7 @@ window.courseData = [
     {
         id: "prompt-automation",
         title: "Engenheiro de Prompt & Automacao Profissional",
-        image: "img/cursos/prompt_eng.png",
+        image: "../assets/img/cursos/prompt_eng.png",
         area: "IA Aplicada",
         level: "Avancado",
         duration: "36h de trilha",
@@ -38,7 +38,7 @@ window.courseData = [
     {
         id: "data-engineering",
         title: "Engenheiro de Dados: Fundamentos e Pratica",
-        image: "img/cursos/data_eng.png",
+        image: "../assets/img/cursos/data_eng.png",
         area: "Dados",
         level: "Intermediario",
         duration: "48h de trilha",
@@ -56,7 +56,7 @@ window.courseData = [
     {
         id: "cybersecurity",
         title: "Especialista em Ciberseguranca",
-        image: "img/cursos/cybersec.png",
+        image: "../assets/img/cursos/cybersec.png",
         area: "Seguranca",
         level: "Avancado",
         duration: "40h de trilha",
@@ -74,7 +74,7 @@ window.courseData = [
     {
         id: "analytics-bi",
         title: "Analista de Dados & BI",
-        image: "img/Imagens Cursos/analista de power BI.webp",
+        image: "../assets/img/Imagens Cursos/analista de power BI.webp",
         area: "Business Intelligence",
         level: "Inicial",
         duration: "28h de trilha",
@@ -92,7 +92,7 @@ window.courseData = [
     {
         id: "full-stack",
         title: "Dev Full Stack Moderno",
-        image: "img/Imagens Cursos/dev full stack.webp",
+        image: "../assets/img/Imagens Cursos/dev full stack.webp",
         area: "Desenvolvimento Web",
         level: "Intermediario",
         duration: "52h de trilha",
@@ -110,7 +110,7 @@ window.courseData = [
     {
         id: "gen-ai",
         title: "IA Generativa: De Python a Agentes Autonomos",
-        image: "img/Imagens Cursos/ia generativa.webp",
+        image: "../assets/img/Imagens Cursos/ia generativa.webp",
         area: "Inteligencia Artificial",
         level: "Avancado",
         duration: "44h de trilha",
@@ -128,7 +128,7 @@ window.courseData = [
     {
         id: "gamificacao",
         title: "Gamificando a Vida: Estrategias de Engajamento",
-        image: "img/Imagens Cursos/gamificando a vida.webp",
+        image: "../assets/img/Imagens Cursos/gamificando a vida.webp",
         area: "Produto & Experiencia",
         level: "Inicial",
         duration: "18h de trilha",
@@ -146,7 +146,7 @@ window.courseData = [
     {
         id: "tech-acceleration",
         title: "Aceleracao Tech: Front-End, Mobile e DevOps",
-        image: "img/Imagens Cursos/aceleração tech.webp",
+        image: "../assets/img/Imagens Cursos/aceleração tech.webp",
         area: "Carreira Tech",
         level: "Inicial",
         duration: "34h de trilha",
@@ -164,7 +164,7 @@ window.courseData = [
     {
         id: "skills-practice",
         title: "Desbloqueie seu Potencial: Curso Pratico de Habilidades Tecnicas",
-        image: "img/Imagens Cursos/desbloqueie seu potencial.webp",
+        image: "../assets/img/Imagens Cursos/desbloqueie seu potencial.webp",
         area: "Evolucao Profissional",
         level: "Inicial",
         duration: "22h de trilha",
@@ -182,7 +182,7 @@ window.courseData = [
     {
         id: "digital-for-all",
         title: "Cursos Digitais para Todos",
-        image: "img/Imagens Cursos/Cursos digitais.webp",
+        image: "../assets/img/Imagens Cursos/Cursos digitais.webp",
         area: "Inclusao Digital",
         level: "Inicial",
         duration: "16h de trilha",
@@ -200,7 +200,7 @@ window.courseData = [
     {
         id: "future-skills",
         title: "Domine as Habilidades Digitais do Futuro: Seu Guia Completo",
-        image: "img/Imagens Cursos/Domine as habilidades.webp",
+        image: "../assets/img/Imagens Cursos/Domine as habilidades.webp",
         area: "Futuro do Trabalho",
         level: "Intermediario",
         duration: "30h de trilha",

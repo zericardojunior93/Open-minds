@@ -413,8 +413,11 @@ nav ul li a.active::after {
     height: auto;
     display: block;
     object-fit: cover;
-    margin: 40px 0; /* Controle suave do distanciamento vertical */
-    opacity: 0.85; /* Mistura levemente a luminosidade com o fundo escuro */
+    margin: 0;
+    padding: 24px 0;
+    opacity: 0.85;
+    background:
+        linear-gradient(180deg, rgba(0, 242, 254, 0.04) 0%, rgba(0, 242, 254, 0.12) 45%, rgba(0, 242, 254, 0.04) 100%);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
 }
@@ -1097,7 +1100,7 @@ footer .footer-container {
 .hero-carreiras {
     background: 
         linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.65) 20%, rgba(0, 0, 0, 0.65) 80%, #000 100%),
-        url('img/Imagens%20Carreiras/carreiras%20primeira%20imagem.png');
+        url('assets/img/Imagens%20Carreiras/carreiras%20primeira%20imagem.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
