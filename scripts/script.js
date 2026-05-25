@@ -128,4 +128,83 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBenefitsHint();
     }
 
+    // 7. Injeção Dinâmica da Barra de Destaque Superior com Cronômetro (Fixa/Permanente)
+    const bar = document.createElement('div');
+    bar.id = 'announcement-bar';
+    bar.className = 'announcement-bar';
+    
+    // Define o caminho correto para a página de planos
+    const isSubpage = window.location.pathname.includes('/pages/');
+    const actionLink = isSubpage ? 'planos.html' : 'pages/planos.html';
+
+    bar.innerHTML = `
+        <div class="announcement-content-left">
+            <span class="highlight-badge">Aceleração Tech</span>
+            <span>⚡ Últimas horas com desconto especial nos planos!</span>
+        </div>
+        <div class="announcement-timer">
+            <div class="timer-segment"><span id="timer-days">00</span><small>Dias</small></div>
+            <span class="timer-separator">:</span>
+            <div class="timer-segment"><span id="timer-hours">00</span><small>Horas</small></div>
+            <span class="timer-separator">:</span>
+            <div class="timer-segment"><span id="timer-mins">00</span><small>Min</small></div>
+            <span class="timer-separator">:</span>
+            <div class="timer-segment"><span id="timer-secs">00</span><small>Seg</small></div>
+        </div>
+        <div class="announcement-content-right">
+            <a href="${actionLink}" class="announcement-btn">Garantir Vaga!</a>
+        </div>
+    `;
+    
+    // Insere a barra no topo absoluto do body
+    document.body.insertBefore(bar, document.body.firstChild);
+
+    // Inicializa o cronômetro
+    startAnnouncementTimer();
+
+    function startAnnouncementTimer() {
+        let targetTime = localStorage.getItem('omAnnouncementTarget');
+        if (!targetTime) {
+            // Define 2 dias, 2 horas, 17 minutos, 24 segundos (181044 segundos)
+            targetTime = Date.now() + 181044 * 1000;
+            localStorage.setItem('omAnnouncementTarget', targetTime);
+        } else {
+            targetTime = parseInt(targetTime, 10);
+            // Se expirou, reseta o tempo para manter a urgência sempre ativa
+            if (targetTime < Date.now()) {
+                targetTime = Date.now() + 181044 * 1000;
+                localStorage.setItem('omAnnouncementTarget', targetTime);
+            }
+        }
+
+        function updateTimer() {
+            const now = Date.now();
+            const diff = targetTime - now;
+
+            if (diff <= 0) {
+                document.getElementById('announcement-bar')?.remove();
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const dEl = document.getElementById('timer-days');
+            const hEl = document.getElementById('timer-hours');
+            const mEl = document.getElementById('timer-mins');
+            const sEl = document.getElementById('timer-secs');
+
+            if (dEl) dEl.textContent = String(days).padStart(2, '0');
+            if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+            if (mEl) mEl.textContent = String(minutes).padStart(2, '0');
+            if (sEl) sEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+
 });
+
