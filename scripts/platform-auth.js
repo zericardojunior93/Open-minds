@@ -36,5 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     target.src = defaultAvatar;
                     target.alt = 'Foto do perfil';
                 }
+            }
+        });
+    }
+
+    // Configura o evento para todos os botões de logout da plataforma
+    logoutButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window.auth?.logout) {
+                window.auth.logout();
             } else {
-                
+                localStorage.removeItem('open_minds_user');
+                window.location.href = 'index.html';
+            }
+        });
+    });
+});

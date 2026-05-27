@@ -17,9 +17,7 @@
 
         .platform-page {
             min-height: 100vh;
-            background:
-                radial-gradient(circle at top left, rgba(0, 242, 254, 0.08), transparent 24%),
-                #03070c;
+            background: #000000;
         }
 
         .platform-topbar {
@@ -122,9 +120,13 @@
 
         .lesson-shell {
             display: grid;
-            grid-template-columns: minmax(0, 1.35fr) 380px;
-            gap: 24px;
+            grid-template-columns: minmax(0, 1.8fr) 400px;
+            gap: 32px;
             align-items: start;
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .lesson-player,
@@ -266,6 +268,462 @@
                 font-size: 2rem;
             }
         }
+        /* Botão Voltar Premium */
+        .lesson-navigation {
+            margin-bottom: 20px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.22);
+            border-radius: 14px;
+            color: var(--ciano);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.04);
+        }
+
+        .btn-back:hover {
+            background: rgba(0, 242, 254, 0.12);
+            border-color: rgba(0, 242, 254, 0.45);
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.12);
+            color: var(--texto);
+        }
+
+        .btn-back svg {
+            transition: transform 0.25s ease;
+        }
+
+        .btn-back:hover svg {
+            transform: translateX(-2px);
+        }
+
+        /* Reprodutor de Vídeo Premium */
+        .video-player-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-player-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Capa/Poster Inicial */
+        .video-poster {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .poster-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: left;
+        }
+
+        .video-poster::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+        }
+
+        /* Botão Play Central Gigante */
+        .play-center-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            width: 76px;
+            height: 76px;
+            background: var(--ciano);
+            border: none;
+            border-radius: 50%;
+            color: #03070c;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+        }
+
+        .play-center-btn svg {
+            width: 32px;
+            height: 32px;
+            transform: translateX(3px);
+            transition: transform 0.2s ease;
+        }
+
+        .play-center-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Indicador de Carregamento (Loading) */
+        .video-loader {
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 7, 12, 0.9);
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .video-loader.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(0, 242, 254, 0.1);
+            border-top-color: var(--ciano);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+
+        .video-loader span {
+            color: var(--texto);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Controles Customizados do Vídeo */
+        .custom-video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(3, 7, 12, 0.95) 0%, rgba(3, 7, 12, 0.7) 70%, transparent 100%);
+            padding: 20px 24px 14px;
+            z-index: 12;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Exibe controles em hover ou se pausado */
+        .video-player-container:hover .custom-video-controls,
+        .video-player-container.paused .custom-video-controls,
+        .video-player-container.controls-active .custom-video-controls {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .video-controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .video-controls-left,
+        .video-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Barra de Progresso Customizada */
+        .video-progress-area {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 4px 0;
+            border-radius: 99px;
+        }
+
+        .video-progress-bar {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 99px;
+            transition: height 0.15s ease;
+        }
+
+        .video-progress-area:hover .video-progress-bar {
+            height: 6px;
+        }
+
+        .video-progress-hover {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 99px;
+            width: 0;
+            pointer-events: none;
+        }
+
+        .video-progress-current {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: var(--ciano);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+            border-radius: 99px;
+            width: 0;
+            pointer-events: none;
+        }
+
+        .video-progress-handle {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%) scale(0);
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            transition: transform 0.15s ease;
+        }
+
+        .video-progress-area:hover .video-progress-handle {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Botões dos Controles */
+        .control-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            color: var(--ciano);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.08);
+        }
+
+        .control-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .video-time-display {
+            font-size: 0.86rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: monospace;
+        }
+
+        /* Controle de Volume */
+        .video-volume-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .volume-slider {
+            width: 0;
+            opacity: 0;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 99px;
+            outline: none;
+            cursor: pointer;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+        }
+
+        .video-volume-control:hover .volume-slider,
+        .volume-slider:focus {
+            width: 70px;
+            opacity: 1;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--ciano);
+            box-shadow: 0 0 6px rgba(0, 242, 254, 0.5);
+            transition: transform 0.15s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Dropdowns de Velocidade e Resolução */
+        .control-dropdown {
+            position: relative;
+        }
+
+        .dropdown-trigger {
+            font-size: 0.86rem;
+            font-weight: 700;
+            padding: 6px 10px;
+            min-width: 44px;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            right: 50%;
+            transform: translateX(50%);
+            background: rgba(7, 11, 16, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(50%, 10px);
+            transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+            z-index: 100;
+            min-width: 100px;
+        }
+
+        .control-dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(50%, 0);
+        }
+
+        .dropdown-content button {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-content button:hover,
+        .dropdown-content button.active {
+            color: #03070c;
+            background: var(--ciano);
+            font-weight: 700;
+        }
+
+        /* Customizações Premium na Lista de Aulas Lateral */
+        .lesson-item {
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--ciano);
+            transform: scaleY(0);
+            transition: transform 0.25s ease;
+        }
+
+        .lesson-item:hover {
+            background: rgba(0, 242, 254, 0.04);
+            border-color: rgba(0, 242, 254, 0.2);
+            transform: translateX(4px);
+        }
+
+        .lesson-item.active {
+            background: rgba(0, 242, 254, 0.08);
+            border-color: rgba(0, 242, 254, 0.45);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.08);
+        }
+
+        .lesson-item.active::before {
+            transform: scaleY(1);
+        }
+
+        .lesson-item.active strong {
+            color: var(--ciano);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .video-player-container {
+                aspect-ratio: 16 / 9;
+                height: auto;
+            }
+            .video-poster {
+                padding: 20px;
+            }
+            .play-center-btn {
+                width: 60px;
+                height: 60px;
+            }
+            .play-center-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+            .video-volume-control {
+                display: none; /* Oculta controle de volume no mobile para economizar espaço */
+            }
+        }
     </style>
 </head>
 <body>
@@ -328,14 +786,126 @@
 
             <div class="platform-content">
     <div class="lesson-page">
-        <section class="container lesson-shell">
+        <!-- Botão de Voltar Premium -->
+        <div class="lesson-navigation">
+            <a href="aluno.html" class="btn-back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar para Meus Cursos
+            </a>
+        </div>
+
+        <section class="lesson-shell">
             <div>
                 <article class="lesson-player">
-                    <div class="lesson-media" id="lesson-media">
-                        <div>
-                            <span class="lesson-tag" id="lesson-area">Curso</span>
-                            <h1 id="lesson-title">Carregando curso...</h1>
-                            <p id="lesson-description">Preparando seu ambiente de estudo.</p>
+                    <div class="video-player-container paused" id="video-player-container">
+                        <!-- O elemento de vídeo real em loop -->
+                        <video id="main-video" playsinline preload="auto" loop>
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-code-running-on-a-computer-monitor-42240-large.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+
+                        <!-- Camada de Carregamento (Spinner) -->
+                        <div class="video-loader" id="video-loader">
+                            <div class="loader-spinner"></div>
+                            <span>Carregando aula...</span>
+                        </div>
+
+                        <!-- Capa/Poster Inicial (antes do primeiro play) -->
+                        <div class="video-poster" id="video-poster">
+                            <div class="poster-content">
+                                <span class="lesson-tag" id="lesson-area">Curso</span>
+                                <h1 id="lesson-title">Carregando curso...</h1>
+                                <p id="lesson-description">Preparando seu ambiente de estudo.</p>
+                                <button class="play-center-btn" id="play-center-btn" aria-label="Iniciar Aula">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Barra de Controles Customizados -->
+                        <div class="custom-video-controls" id="custom-video-controls">
+                            <!-- Barra de progresso -->
+                            <div class="video-progress-area" id="video-progress-area">
+                                <div class="video-progress-bar" id="video-progress-bar">
+                                    <div class="video-progress-hover" id="video-progress-hover"></div>
+                                    <div class="video-progress-current" id="video-progress-current"></div>
+                                    <div class="video-progress-handle" id="video-progress-handle"></div>
+                                </div>
+                            </div>
+
+                            <!-- Botões de controle -->
+                            <div class="video-controls-row">
+                                <div class="video-controls-left">
+                                    <!-- Botão Play/Pause -->
+                                    <button class="control-btn" id="video-play-btn" aria-label="Play/Pause">
+                                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="display: none;">
+                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Exibição de tempo -->
+                                    <span class="video-time-display">
+                                        <span id="video-time-current">00:00</span> / <span id="video-time-duration">00:00</span>
+                                    </span>
+                                </div>
+
+                                <div class="video-controls-right">
+                                    <!-- Seletor de Velocidade -->
+                                    <div class="control-dropdown" id="video-speed-dropdown">
+                                        <button class="control-btn dropdown-trigger" id="video-speed-btn">1.0x</button>
+                                        <div class="dropdown-content">
+                                            <button data-speed="0.5">0.5x</button>
+                                            <button data-speed="1.0" class="active">1.0x</button>
+                                            <button data-speed="1.5">1.5x</button>
+                                            <button data-speed="2.0">2.0x</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Seletor de Resolução (Fictício) -->
+                                    <div class="control-dropdown" id="video-res-dropdown">
+                                        <button class="control-btn dropdown-trigger" id="video-res-btn" aria-label="Qualidade">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-content">
+                                            <button data-res="1080">1080p HD</button>
+                                            <button data-res="720" class="active">720p</button>
+                                            <button data-res="480">480p</button>
+                                            <button data-res="360">360p</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Controle de Volume -->
+                                    <div class="video-volume-control">
+                                        <button class="control-btn" id="video-volume-btn" aria-label="Mute/Unmute">
+                                            <svg class="volume-up-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                            </svg>
+                                            <svg class="volume-mute-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="display: none;">
+                                                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                                            </svg>
+                                        </button>
+                                        <input type="range" class="volume-slider" id="video-volume-slider" min="0" max="1" step="0.05" value="0.8">
+                                    </div>
+
+                                    <!-- Botão de Tela Cheia -->
+                                    <button class="control-btn" id="video-fullscreen-btn" aria-label="Tela Cheia">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="lesson-overview">
@@ -466,6 +1036,15 @@
                 return;
             }
 
+            // Funções Auxiliares
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return '00:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+
+            // Inicialização básica do curso
             document.getElementById('platform-user-name').textContent = user.nome || 'Aluno Open Minds';
             document.title = `Open Minds | ${course.title}`;
             document.getElementById('lesson-area').textContent = course.area;
@@ -475,16 +1054,253 @@
             document.getElementById('lesson-level').textContent = course.level;
             document.getElementById('lesson-duration').textContent = course.duration;
             document.getElementById('lesson-students').textContent = course.students;
-            document.getElementById('lesson-media').style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55)), radial-gradient(circle at top left, rgba(0, 242, 254, 0.22), transparent 34%), url("${course.image}")`;
-            document.getElementById('lesson-media').style.backgroundSize = 'cover';
-            document.getElementById('lesson-media').style.backgroundPosition = 'center';
 
-            document.getElementById('lesson-list').innerHTML = course.lessons.map((lesson, index) => `
-                <div class="lesson-item">
+            // Configuração da Capa Poster com a imagem do curso
+            const poster = document.getElementById('video-poster');
+            poster.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url("${course.image}")`;
+            poster.style.backgroundSize = 'cover';
+            poster.style.backgroundPosition = 'center';
+
+            // Carrega lista de aulas
+            const lessonList = document.getElementById('lesson-list');
+            lessonList.innerHTML = course.lessons.map((lesson, index) => `
+                <div class="lesson-item" data-index="${index}">
                     <strong>Aula ${index + 1}</strong>
                     <span>${lesson}</span>
                 </div>
             `).join('');
+
+            // Seleciona Elementos do Reprodutor
+            const mainVideo = document.getElementById('main-video');
+            const videoContainer = document.getElementById('video-player-container');
+            const playCenterBtn = document.getElementById('play-center-btn');
+            const playPauseBtn = document.getElementById('video-play-btn');
+            const playIcon = playPauseBtn.querySelector('.play-icon');
+            const pauseIcon = playPauseBtn.querySelector('.pause-icon');
+            const timeCurrent = document.getElementById('video-time-current');
+            const timeDuration = document.getElementById('video-time-duration');
+            const progressArea = document.getElementById('video-progress-area');
+            const progressCurrent = document.getElementById('video-progress-current');
+            const progressHover = document.getElementById('video-progress-hover');
+            const progressHandle = document.getElementById('video-progress-handle');
+            const volumeBtn = document.getElementById('video-volume-btn');
+            const volumeSlider = document.getElementById('video-volume-slider');
+            const volumeUpIcon = volumeBtn.querySelector('.volume-up-icon');
+            const volumeMuteIcon = volumeBtn.querySelector('.volume-mute-icon');
+            const fullscreenBtn = document.getElementById('video-fullscreen-btn');
+
+            // Interatividade nas Aulas Laterais
+            const lessonItems = document.querySelectorAll('.lesson-item');
+            lessonItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    const idx = parseInt(item.getAttribute('data-index'), 10);
+                    const lessonName = course.lessons[idx];
+                    
+                    if (item.classList.contains('active')) return;
+                    
+                    lessonItems.forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Transição premium de carregamento de aula
+                    const loader = document.getElementById('video-loader');
+                    loader.querySelector('span').textContent = 'Carregando aula...';
+                    loader.classList.add('active');
+                    
+                    // Esconde poster se ainda estiver visível
+                    poster.style.opacity = '0';
+                    poster.style.visibility = 'hidden';
+                    
+                    setTimeout(() => {
+                        document.getElementById('lesson-title').textContent = lessonName;
+                        document.getElementById('lesson-description').textContent = `Aula ${idx + 1} da trilha ${course.title}. Assista e pratique agora.`;
+                        
+                        mainVideo.currentTime = 0;
+                        mainVideo.play().catch(() => {});
+                        
+                        loader.classList.remove('active');
+                    }, 800);
+                });
+            });
+
+            // Clique no Botão Play Central Gigante
+            playCenterBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Ativa a primeira aula se nenhuma estiver ativa
+                const currentActive = document.querySelector('.lesson-item.active');
+                if (!currentActive && lessonItems.length > 0) {
+                    lessonItems[0].classList.add('active');
+                }
+                
+                poster.style.opacity = '0';
+                poster.style.visibility = 'hidden';
+                
+                mainVideo.play().catch(() => {});
+            });
+
+            // Toggle Play/Pause
+            function togglePlay() {
+                if (mainVideo.paused) {
+                    mainVideo.play().catch(() => {});
+                } else {
+                    mainVideo.pause();
+                }
+            }
+            
+            playPauseBtn.addEventListener('click', togglePlay);
+            mainVideo.addEventListener('click', togglePlay);
+            
+            // Sincroniza estado com interface de controles
+            mainVideo.addEventListener('play', () => {
+                videoContainer.classList.remove('paused');
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                
+                poster.style.opacity = '0';
+                poster.style.visibility = 'hidden';
+            });
+            
+            mainVideo.addEventListener('pause', () => {
+                videoContainer.classList.add('paused');
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            });
+            
+            // Timeline: Atualização de Progresso
+            mainVideo.addEventListener('timeupdate', () => {
+                if (!mainVideo.duration) return;
+                const pct = (mainVideo.currentTime / mainVideo.duration) * 100;
+                progressCurrent.style.width = `${pct}%`;
+                progressHandle.style.left = `${pct}%`;
+                timeCurrent.textContent = formatTime(mainVideo.currentTime);
+            });
+            
+            mainVideo.addEventListener('loadedmetadata', () => {
+                timeDuration.textContent = formatTime(mainVideo.duration);
+            });
+            
+            if (mainVideo.readyState >= 1) {
+                timeDuration.textContent = formatTime(mainVideo.duration);
+            }
+            
+            // Timeline: Clique para navegar no tempo (Seek)
+            progressArea.addEventListener('click', (e) => {
+                const rect = progressArea.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                mainVideo.currentTime = pos * mainVideo.duration;
+            });
+            
+            // Timeline: Hover indicador
+            progressArea.addEventListener('mousemove', (e) => {
+                const rect = progressArea.getBoundingClientRect();
+                const pct = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+                progressHover.style.width = `${pct}%`;
+            });
+            
+            progressArea.addEventListener('mouseleave', () => {
+                progressHover.style.width = '0';
+            });
+            
+            // Volume
+            volumeSlider.addEventListener('input', () => {
+                mainVideo.volume = volumeSlider.value;
+                mainVideo.muted = false;
+                updateVolumeUI();
+            });
+            
+            volumeBtn.addEventListener('click', () => {
+                mainVideo.muted = !mainVideo.muted;
+                updateVolumeUI();
+            });
+            
+            function updateVolumeUI() {
+                if (mainVideo.muted || mainVideo.volume === 0) {
+                    volumeUpIcon.style.display = 'none';
+                    volumeMuteIcon.style.display = 'block';
+                } else {
+                    volumeUpIcon.style.display = 'block';
+                    volumeMuteIcon.style.display = 'none';
+                }
+            }
+            
+            // Velocidade de Reprodução
+            const speedOptions = document.querySelectorAll('#video-speed-dropdown .dropdown-content button');
+            const speedTriggerBtn = document.getElementById('video-speed-btn');
+            
+            speedOptions.forEach((opt) => {
+                opt.addEventListener('click', () => {
+                    const speed = parseFloat(opt.getAttribute('data-speed'));
+                    mainVideo.playbackRate = speed;
+                    speedTriggerBtn.textContent = `${speed.toFixed(1)}x`;
+                    speedOptions.forEach(o => o.classList.remove('active'));
+                    opt.classList.add('active');
+                });
+            });
+            
+            // Resolução Fictícia
+            const resOptions = document.querySelectorAll('#video-res-dropdown .dropdown-content button');
+            
+            resOptions.forEach((opt) => {
+                opt.addEventListener('click', () => {
+                    const res = opt.getAttribute('data-res');
+                    resOptions.forEach(o => o.classList.remove('active'));
+                    opt.classList.add('active');
+                    
+                    const wasPlaying = !mainVideo.paused;
+                    if (wasPlaying) mainVideo.pause();
+                    
+                    const loader = document.getElementById('video-loader');
+                    loader.querySelector('span').textContent = `Ajustando para ${res}p...`;
+                    loader.classList.add('active');
+                    
+                    setTimeout(() => {
+                        loader.classList.remove('active');
+                        if (wasPlaying) {
+                            mainVideo.play().catch(() => {});
+                        }
+                    }, 600);
+                });
+            });
+            
+            // Tela Cheia
+            fullscreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    if (videoContainer.requestFullscreen) {
+                        videoContainer.requestFullscreen();
+                    } else if (videoContainer.webkitRequestFullscreen) { /* Safari */
+                        videoContainer.webkitRequestFullscreen();
+                    } else if (videoContainer.msRequestFullscreen) { /* IE11 */
+                        videoContainer.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) { /* Safari */
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) { /* IE11 */
+                        document.msExitFullscreen();
+                    }
+                }
+            });
+            
+            // Ocultação Automática dos Controles por Ociosidade
+            let controlsTimeout;
+            function resetControlsTimeout() {
+                videoContainer.classList.add('controls-active');
+                clearTimeout(controlsTimeout);
+                if (!mainVideo.paused) {
+                    controlsTimeout = setTimeout(() => {
+                        videoContainer.classList.remove('controls-active');
+                    }, 2500);
+                }
+            }
+            
+            videoContainer.addEventListener('mousemove', resetControlsTimeout);
+            mainVideo.addEventListener('play', resetControlsTimeout);
+            mainVideo.addEventListener('pause', () => {
+                videoContainer.classList.add('controls-active');
+                clearTimeout(controlsTimeout);
+            });
         });
     </script>
 </body>
