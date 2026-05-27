@@ -129,38 +129,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 7. Injeção Dinâmica da Barra de Destaque Superior com Cronômetro (Fixa/Permanente)
-    const bar = document.createElement('div');
-    bar.id = 'announcement-bar';
-    bar.className = 'announcement-bar';
-    
-    // Define o caminho correto para a página de planos
-    const isSubpage = window.location.pathname.includes('/pages/');
-    const actionLink = isSubpage ? 'planos.html' : 'pages/planos.html';
+    // Não exibe o banner promocional nas páginas da área do aluno (já adquiriu o curso)
+    // Também esconde o banner quando o usuário já está logado (já é assinante)
+    const currentPage = window.location.pathname.split('/').pop() || '';
+    const studentAreaPages = ['aluno.html', 'aluno-perfil.html', 'aluno-blog.html', 'aluno-post.html', 'aulas.html', 'minhas_assinaturas.html'];
+    const isStudentArea = studentAreaPages.includes(currentPage);
+    const isLoggedIn = window.auth && window.auth.estaLogado();
 
-    bar.innerHTML = `
-        <div class="announcement-content-left">
-            <span class="highlight-badge">Aceleração Tech</span>
-            <span>⚡ Últimas horas com desconto especial nos planos!</span>
-        </div>
-        <div class="announcement-timer">
-            <div class="timer-segment"><span id="timer-days">00</span><small>Dias</small></div>
-            <span class="timer-separator">:</span>
-            <div class="timer-segment"><span id="timer-hours">00</span><small>Horas</small></div>
-            <span class="timer-separator">:</span>
-            <div class="timer-segment"><span id="timer-mins">00</span><small>Min</small></div>
-            <span class="timer-separator">:</span>
-            <div class="timer-segment"><span id="timer-secs">00</span><small>Seg</small></div>
-        </div>
-        <div class="announcement-content-right">
-            <a href="${actionLink}" class="announcement-btn">Garantir Vaga!</a>
-        </div>
-    `;
-    
-    // Insere a barra no topo absoluto do body
-    document.body.insertBefore(bar, document.body.firstChild);
+    if (!isStudentArea && !isLoggedIn) {
+        const bar = document.createElement('div');
+        bar.id = 'announcement-bar';
+        bar.className = 'announcement-bar';
+        
+        // Define o caminho correto para a página de planos
+        const isSubpage = window.location.pathname.includes('/pages/');
+        const actionLink = isSubpage ? 'planos.html' : 'pages/planos.html';
 
-    // Inicializa o cronômetro
-    startAnnouncementTimer();
+        bar.innerHTML = `
+            <div class="announcement-content-left">
+                <span class="highlight-badge">Aceleração Tech</span>
+                <span>⚡ Últimas horas com desconto especial nos planos!</span>
+            </div>
+            <div class="announcement-timer">
+                <div class="timer-segment"><span id="timer-days">00</span><small>Dias</small></div>
+                <span class="timer-separator">:</span>
+                <div class="timer-segment"><span id="timer-hours">00</span><small>Horas</small></div>
+                <span class="timer-separator">:</span>
+                <div class="timer-segment"><span id="timer-mins">00</span><small>Min</small></div>
+                <span class="timer-separator">:</span>
+                <div class="timer-segment"><span id="timer-secs">00</span><small>Seg</small></div>
+            </div>
+            <div class="announcement-content-right">
+                <a href="${actionLink}" class="announcement-btn">Garantir Vaga!</a>
+            </div>
+        `;
+        
+        // Insere a barra no topo absoluto do body
+        document.body.insertBefore(bar, document.body.firstChild);
+
+        // Inicializa o cronômetro
+        startAnnouncementTimer();
+    }
 
     function startAnnouncementTimer() {
         let targetTime = localStorage.getItem('omAnnouncementTarget');
